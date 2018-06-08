@@ -63,7 +63,8 @@ class TunachainState(object):
         state_data = _serialize(
             {
                 "name": name,
-                "owner": owner
+                "owner": owner,
+                "email": email
             })
         return self._context.set_state(
             {address: state_data}, timeout=self.TIMEOUT)

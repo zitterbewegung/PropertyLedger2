@@ -43,7 +43,7 @@ app.refresh = function () {
 
     // Populate asset views
     assets.forEach(asset => {
-      addRow('#assetList', asset.name, asset.owner)
+	addRow('#assetList', asset.name, asset.owner, asset.email)
       if (this.user && asset.owner === this.user.public) {
         addOption('[name="assetSelect"]', asset.name)
       }
@@ -61,10 +61,10 @@ app.refresh = function () {
   })
 }
 
-app.update = function (action, asset, owner) {
+app.update = function (action, asset, owner, email) {
   if (this.user) {
     submitUpdate(
-      { action, asset, owner },
+	{ action, asset, owner, email },
       this.user.private,
       success => success ? this.refresh() : null
     )
@@ -89,8 +89,9 @@ $('[name="keySelect"]').on('change', function () {
 
 // Create Asset
 $('#createSubmit').on('click', function () {
-  const asset = $('#createName').val()
-  if (asset) app.update('create', asset)
+   const asset = $('#createName').val()
+   const asset_email = $('#create_asset_email').val() 
+  if (asset && email) app.update('create', asset)
 })
 
 // Transfer Asset
