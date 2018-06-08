@@ -43,7 +43,8 @@ app.refresh = function () {
 
     // Populate asset views
     assets.forEach(asset => {
-	addRow('#assetList', asset.name, asset.owner, asset.email)
+	addRow('#assetList', asset.name, asset.owner, asset.email,asset.code,asset.mobilephone,asset.userType,asset.initiatorType)
+	debugger;
       if (this.user && asset.owner === this.user.public) {
         addOption('[name="assetSelect"]', asset.name)
       }
@@ -61,10 +62,10 @@ app.refresh = function () {
   })
 }
 
-app.update = function (action, asset, owner, email) {
+app.update = function (action, asset, owner) {
   if (this.user) {
     submitUpdate(
-	{ action, asset, owner, email },
+	{ action, asset, owner },
       this.user.private,
       success => success ? this.refresh() : null
     )
@@ -90,8 +91,8 @@ $('[name="keySelect"]').on('change', function () {
 // Create Asset
 $('#createSubmit').on('click', function () {
    const asset = $('#createName').val()
-   const asset_email = $('#create_asset_email').val() 
-  if (asset && email) app.update('create', asset)
+   //const asset_email = $('#create_asset_email').val() 
+  if (asset) app.update('create', asset)
 })
 
 // Transfer Asset

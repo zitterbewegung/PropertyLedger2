@@ -62,9 +62,14 @@ class TunachainState(object):
         address = _get_asset_address(name)
         state_data = _serialize(
             {
+                #Step one
                 "name": name,
                 "owner": owner,
-                "email": email
+                "email": "zitterbewegung@gmail.com",
+                "code": "1254",
+                "mobilephone": "3316255728",
+                "userType": "Realitor",
+                "initiatorType" : "Residential"
             })
         return self._context.set_state(
             {address: state_data}, timeout=self.TIMEOUT)

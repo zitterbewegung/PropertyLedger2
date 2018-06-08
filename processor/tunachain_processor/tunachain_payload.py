@@ -29,7 +29,7 @@ class TunachainPayload(object):
         action = data.get('action')
         asset = data.get('asset')
         owner = data.get('owner')
-
+        #email = data.get('email')
         if not action:
             raise InvalidTransaction('Action is required')
         if action not in ('create', 'transfer', 'accept', 'reject'):
@@ -46,7 +46,7 @@ class TunachainPayload(object):
         self._action = action
         self._asset = asset
         self._owner = owner
-
+        #self._email = email
     @property
     def action(self):
         return self._action
@@ -58,3 +58,6 @@ class TunachainPayload(object):
     @property
     def owner(self):
         return self._owner
+    #@property
+    #def email(self):
+    #    return self._email
