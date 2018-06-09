@@ -43,8 +43,18 @@ app.refresh = function () {
 
     // Populate asset views
     assets.forEach(asset => {
-	addRow('#assetList', asset.name, asset.owner, asset.email,asset.code,asset.mobilephone,asset.userType,asset.initiatorType)
-	debugger;
+	addRow('#assetList',
+	       asset.name,
+	       asset.owner,
+	       asset.email,
+	       asset.code,
+	       asset.mobilephone,
+	       asset.userType,
+	       asset.initiatorType,
+	       asset.parcel_street_address,
+	       asset.parcel_index_number,
+	       asset.merkle_root,
+	       asset.mls_id_number)
       if (this.user && asset.owner === this.user.public) {
         addOption('[name="assetSelect"]', asset.name)
       }
