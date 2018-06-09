@@ -72,8 +72,8 @@ Original source code can be found here: https://github.com/delventhalz/transfer-
         <label>STEP ONE: Identify Initiator</label>
         <input id="createName" class="form-control" type="text" placeholder="Enter asset name...">
 	<input id="createAddress" class="form-control" type="text" placeholder="Enter asset contact email...">
-	<input id="createmobilephone"  class="form-control" type="text" placeholder="3316255728">
-	<input id="createCode"  class="form-control" type="text" placeholder="1254">
+	<input id="createmobilephone"  class="form-control" type="text" placeholder="Enter asset phone number...">
+	<input id="createCode"  class="form-control" type="text" placeholder="Enter PIN...">
 	<input id="createMobilePhone" class="form-control" type="text" placeholder="Enter initiator phone">
 	<select name="initiator_type" id="create_initiator_type" class="form-control" type="text" placeholder="Enter Initiator type">
 	  <option value="Realitor">Realitor</option>
@@ -85,6 +85,14 @@ Original source code can be found here: https://github.com/delventhalz/transfer-
 	  <option value="Residential">Residential</option>
 	  <option value="Commercial">Commercial</option>
 	  <option value="Seller">Seller</option>
+
+	</select>    
+      </div>
+      <div class="form-group">
+        <label>STEP TWO: Identify Parcel</label>
+        <input id="createStreetAddress" class="form-control" type="text" placeholder="Enter parcel street address...">
+	<input id="createParcelIndexNumber" class="form-control" type="text" placeholder="Enter parcel index number...">
+	<input id="merkle_root"  class="form-control" type="text" placeholder="Enter parcel Merkle_root...">
 
 	</select>    
         <input id="createSubmit" type="button" value="Create" class="btn btn-primary">
@@ -108,7 +116,7 @@ Original source code can be found here: https://github.com/delventhalz/transfer-
     </div>
 
     <div id="data">
-      <label>Tuna List</label>
+      <label>Parcel List</label>
       <table class="table table-hover">
         <tr>
           <th>Parcel</th>
