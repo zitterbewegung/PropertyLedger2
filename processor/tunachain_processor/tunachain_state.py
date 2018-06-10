@@ -74,7 +74,12 @@ class TunachainState(object):
                 "parcel_street_address" : "15509 LE CLAIRE AVE",
                 "parcel_index_number" : 28164010460000,
                 "merkle_root" : "0976cb2d1309dcc25fd8ca4bac341de6d69e4e7d11d89a8935466d7d9cd4f7d01dea678dd0c62bb20af8ff42b07958ac14a2e083c6d5732e678c9f1ff7d191ac",
-                "mls_id_number": "1256absd"
+                "mls_id_number": "1256absd",
+                #Step three Send invites Team phase
+                "buyer_email": "buyer@aconsapart.com",
+                "seller_email": "seller@aconsapart.com",
+                "buyer_attorney": "buyer_attorney@compliance.com",
+                "seller_attorney": "seller_attorney@compliance.com"
                 
             })
         return self._context.set_state(
