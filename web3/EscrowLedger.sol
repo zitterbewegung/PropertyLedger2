@@ -1,7 +1,7 @@
 pragma solidity ^0.4.18;
 
 contract EscrowLedger {
-    
+    //https://coursetro.com/posts/code/102/Solidity-Mappings-&-Structs-Tutorial
     struct LedgerEntry {
         uint money;
         string ledgerUser;
