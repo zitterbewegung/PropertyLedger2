@@ -55,6 +55,7 @@ Original source code can be found here: https://github.com/delventhalz/transfer-
     var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
     
     var abiArray =  [{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"assetsCreated","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"setGreeting","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"greet","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"greeting","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}];
+    var contractAddress = "";
     var contract = web3.eth.contract(abiArray).at(contractAddress);
     
   </script>
@@ -75,40 +76,60 @@ Original source code can be found here: https://github.com/delventhalz/transfer-
           <option value="new">Create new key pair</option>
         </select>
       </div>
-
-      <div class="form-group">
-        <label>STEP ONE: Identify Initiator</label>
-        <input id="createName" class="form-control" type="text" placeholder="Enter asset name...">
-	<input id="createAddress" class="form-control" type="text" placeholder="Enter asset contact email...">
-	<input id="createmobilephone"  class="form-control" type="text" placeholder="Enter asset phone number...">
-	<input id="createCode"  class="form-control" type="text" placeholder="Enter PIN...">
-	<input id="createMobilePhone" class="form-control" type="text" placeholder="Enter initiator phone">
-	<select name="initiator_type" id="create_initiator_type" class="form-control" type="text" placeholder="Enter Initiator type">
-	  <option value="Realitor">Realitor</option>
-	  <option value="Buyer">Buyer</option>
-	  <option value="Seller">Seller</option>
-
-	</select>
-	<select name="transactionSelect" id="create_transaction_type" class="form-control" type="text" placeholder="Enter Initiator type">
-	  <option value="Residential">Residential</option>
-	  <option value="Commercial">Commercial</option>
-	  <option value="Seller">Seller</option>
-
-	</select>    
-      </div>
       <h1>Team Phase:</h1>
       <div class="form-group">
-        <label> Step One Send Invites</label>
-        <input id="createStreetAddress" class="form-control" type="text" placeholder="Enter parcel street address...">
-	<input id="createParcelIndexNumber" class="form-control" type="text" placeholder="Enter parcel index number...">
-	<input id="merkle_root"  class="form-control" type="text" placeholder="Enter parcel Merkle_root...">
+          <label>STEP ONE: Identify Initiator</label>
+          <input id="createName" class="form-control" type="text" placeholder="Enter asset name...">
+	  <input id="createAddress" class="form-control" type="text" placeholder="Enter asset contact email...">
+	  <input id="createmobilephone"  class="form-control" type="text" placeholder="Enter asset phone number...">
+	  <input id="createCode"  class="form-control" type="text" placeholder="Enter PIN...">
+	  <input id="createMobilePhone" class="form-control" type="text" placeholder="Enter initiator phone">
+	  <select name="initiator_type" id="create_initiator_type" class="form-control" type="text" placeholder="Enter Initiator type">
+	      <option value="Realitor">Realitor</option>
+	      <option value="Buyer">Buyer</option>
+	      <option value="Seller">Seller</option>
+
+	  </select>
+	  <select name="transactionSelect" id="create_transaction_type" class="form-control" type="text" placeholder="Enter Initiator type">
+	      <option value="Residential">Residential</option>
+	      <option value="Commercial">Commercial</option>
+	      <option value="Seller">Seller</option>
+
+	  </select>    
+      </div>
+
+      <div class="form-group">
+          <label> Step Two: Identify Parcel</label>
+          <input id="createCommonStreetAddress" class="form-control" type="text" placeholder="Parcel Street Address">
+	  <input id="createParcelIndexNumber" class="form-control" type="text" placeholder="Enter parcel index number...">	  <input id="confirmPIN" class="form-control" type="text" placeholder="Confirm parcel index number...">
+	  <input id="merkle_root"  class="form-control" type="text" placeholder="Enter parcel Merkle_root...">
+	  <input id="createMLSID"  class="form-control" type="text" placeholder="Confirm MLSID...">
 
 	</select>    
         <input id="createCancel" type="button" value="Cancel" class="btn btn-secondary">
 
         <input id="createSubmit" type="button" value="Create" class="btn btn-primary">
       </div>
-      
+
+      <h1>Team Phase:</h1>
+      <div class="form-group">
+          <label> Send Invites</label>
+          <input id="createBuyerEmail" class="form-control" type="text" placeholder="Enter Buyser Email">
+	  <input id="createParcelIndexNumber" class="form-control" type="text" placeholder="Enter parcel index number...">
+	  <input id="merkle_root"  class="form-control" type="text" placeholder="Enter parcel Merkle_root...">
+
+          <input id="createCancel" type="button" value="Cancel" class="btn btn-secondary">
+
+          <input id="createSubmit" type="button" value="Create" class="btn btn-primary">
+      </div>
+      <div class="form-group">
+	  <label> Select Files to Share</label>
+	  <label for="exampleInputFile">File input</label>
+	  <input type="file" id="exampleInputFile">
+	  <p class="help-block">Example block-level help text here.</p>
+      </div>
+
+
       <div class="form-group">
         <label>Transfer Tuna</label>
         <select class="form-control" name="assetSelect">

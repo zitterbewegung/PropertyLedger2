@@ -6,7 +6,9 @@ from solc import compile_source
 from web3.contract import ConciseContract
 
 # Solidity source code
+
 contract_source_code = '''
+
 pragma solidity ^0.4.21;
 
 contract Greeter {
