@@ -80,7 +80,8 @@ class TunachainState(object):
                 "seller_email": "seller@aconsapart.com",
                 "buyer_attorney": "buyer_attorney@compliance.com",
                 "seller_attorney": "seller_attorney@compliance.com"
-                "sales_contract_hash" : "10c435b41257e5ae2ef4ae1c360b3d02a14d5175ab375a9514989e1f097cff16d1f41f367170505aa54a41c0d7a8f343441b9c0500703d4c54ac36a577eaeacf"
+                "sales_contract_hash" : "10c435b41257e5ae2ef4ae1c360b3d02a14d5175ab375a9514989e1f097cff16d1f41f367170505aa54a41c0d7a8f343441b9c0500703d4c54ac36a577eaeacf",
+                "approved_by_all_parties" : True
             })
         return self._context.set_state(
             {address: state_data}, timeout=self.TIMEOUT)
