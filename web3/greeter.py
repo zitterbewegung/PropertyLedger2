@@ -8,6 +8,7 @@ from web3.contract import ConciseContract
 # Solidity source code
 
 contract_source_code = '''
+<<<<<<< HEAD
 
 pragma solidity ^0.4.21;
 
@@ -16,15 +17,43 @@ contract Greeter {
 
     function Greeter() public {
         greeting = 'Hello';
-    }
+=======
+pragma solidity ^0.4.18;
 
-    function setGreeting(string _greeting) public {
-        greeting = _greeting;
+contract EscrowLedger {
+    
+    struct LedgerEntry {
+        uint money;
+        string ledgerUser;
+        string escrowName;
+>>>>>>> 2bf226da0e2eed244cbc1d4e4ffb7916b7a4b721
     }
-
-    function greet() view public returns (string) {
-        return greeting;
+    
+    mapping (address => LedgerEntry) LedgerEntrys;
+    address[] public LedgerEntryAccts;
+    
+    function setLedgerEntry(address _address, uint _money, string _ledgerUser, string _escrowName) public {
+        var LedgerEntry = LedgerEntrys[_address];
+        
+        LedgerEntry.money = _money;
+        LedgerEntry.ledgerUser = _ledgerUser;
+        LedgerEntry.escrowName = _escrowName;
+        
+        LedgerEntryAccts.push(_address) -1;
     }
+    
+    function getLedgerEntrys() view public returns(address[]) {
+        return LedgerEntryAccts;
+    }
+    
+    function getLedgerEntry(address _address) view public returns (uint, string, string) {
+        return (LedgerEntrys[_address].money, LedgerEntrys[_address].ledgerUser, LedgerEntrys[_address].escrowName);
+    }
+    
+    function countLedgerEntrys() view public returns (uint) {
+        return LedgerEntryAccts.length;
+    }
+    
 }
 '''
 
@@ -39,7 +68,7 @@ w3.eth.defaultAccount = w3.eth.accounts[0]
 
 # Instantiate and deploy contract
 Greeter = w3.eth.contract(abi=contract_interface['abi'], bytecode=contract_interface['bin'])
-
+pragma
 # Submit the transaction that deploys the contract
 tx_hash = Greeter.constructor().transact()
 
