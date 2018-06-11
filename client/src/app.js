@@ -54,7 +54,14 @@ app.refresh = function () {
 	       asset.parcel_street_address,
 	       asset.parcel_index_number,
 	       asset.merkle_root,
-	       asset.mls_id_number)
+	       asset.mls_id_number.
+	       asset.buyer_email,
+	       asset.seller_email,
+	       asset.buyer_email,
+ 	       asset.seller_email,
+	       asset.buyer_attorney,
+	       asset.sales_contract_hash,
+	       asset.approved_by_all_parties)
       if (this.user && asset.owner === this.user.public) {
         addOption('[name="assetSelect"]', asset.name)
       }
