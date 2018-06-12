@@ -53,7 +53,8 @@ Original source code can be found here: https://github.com/delventhalz/transfer-
   </style>
   <script>
    //From http://hypernephelist.com/2016/06/21/a-simple-smart-contract-ui-web3.html
-   var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+    function deployContract(){
+	 var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
    var escrowledgerContract = web3.eth.contract([{"constant":true,"inputs":[],"name":"countLedgerEntrys","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"LedgerEntryAccts","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_address","type":"address"}],"name":"getLedgerEntry","outputs":[{"name":"","type":"uint256"},{"name":"","type":"string"},{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_address","type":"address"},{"name":"_money","type":"uint256"},{"name":"_ledgerUser","type":"string"},{"name":"_escrowName","type":"string"}],"name":"setLedgerEntry","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getLedgerEntrys","outputs":[{"name":"","type":"address[]"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]);
 var escrowledger = escrowledgerContract.new(
    {
@@ -65,9 +66,10 @@ var escrowledger = escrowledgerContract.new(
     if (typeof contract.address !== 'undefined') {
          console.log('Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
     }
- })
+   });
+    }
        //escrowledger.setLedgerEntry(web3.eth.accounts[0],12400,"LENDER","USD");
-       
+ 
        var filter = web3.eth.filter('latest');
        filter.watch(function(error, result) {
 	   var block = web3.eth.getBlock(result, true);
@@ -76,6 +78,8 @@ var escrowledger = escrowledgerContract.new(
        });
        
   </script>
+  <
+  
 </head>
 <body>
     
@@ -150,12 +154,23 @@ var escrowledger = escrowledgerContract.new(
 	    </div>
 	    <div class="form-group">
 		<label>Please confirm that all of the above forms will be distributed to continue.</label>
-		<input type="checkbox"/>
+		<input type="checkbox">
+
+
+	    </div>
+	    
+	    <div class="Escrow Phase">
+		Document:
+	    </div>
+	    
+	    <div class="form-group">
+		<label>Deploy data to Ethereum </label>
+		<input id="WriteToBlockchain" value="Deploy" class="btn btn-primary" onClick="deployContract()">
 	    </div>
       <div class="form-group">
         <label>Transfer Documents</label>
         <select class="form-control" name="assetSelect">
-          <option value="none" selected>Select Tuna...</option>
+          <option value="none" selected>Select Docs...</option>
         </select>
         <select class="form-control" name="transferSelect">
           <option value="none" selected>Select recipient...</option>

@@ -47,14 +47,16 @@ app.refresh = function () {
 	       asset.name,
 	       asset.owner,
 	       asset.email,
+	       asset.userType,
+	       asset.parcel_street_address,
+
 	       asset.code,
 	       asset.mobilephone,
-	       asset.userType,
+	      
 	       asset.initiatorType,
-	       asset.parcel_street_address,
 	       asset.parcel_index_number,
 	       asset.merkle_root,
-	       asset.mls_id_number.
+	       asset.mls_id_number,
 	       asset.buyer_email,
 	       asset.seller_email,
 	       asset.buyer_email,
