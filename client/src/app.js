@@ -63,7 +63,8 @@ app.refresh = function () {
  	       asset.seller_email,
 	       asset.buyer_attorney,
 	       asset.sales_contract_hash,
-	       asset.approved_by_all_parties)
+	       asset.approved_by_all_parties,
+	       asset.escrow_pin)
       if (this.user && asset.owner === this.user.public) {
         addOption('[name="assetSelect"]', asset.name)
       }

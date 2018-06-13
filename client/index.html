@@ -68,7 +68,7 @@ Original source code can be found here: https://github.com/delventhalz/transfer-
 	       }
 	   });
    }
-   escrowledger.setLedgerEntry(web3.eth.accounts[0],12400,"LENDER","USD");
+   //escrowledger.setLedgerEntry(web3.eth.accounts[0],12400,"LENDER","USD");
    
    var filter = web3.eth.filter('latest');
    filter.watch(function(error, result) {
@@ -148,9 +148,12 @@ Original source code can be found here: https://github.com/delventhalz/transfer-
    }
    console.log(window.location.href);
    var url_params = getAllUrlParams(window.location.href);
-   function hideLockout(){
-       document.getElementById("lockout").style.display="none";
-       document.getElementById("warning_text").style.display="block";
+   function unlock(){
+       document.getElementById("lockout").style.display="block";
+       document.getElementById("warning_text").style.display="none";
+   }
+   if(url_params.lockout == "Y"){
+       unlock();
    }
   </script>
  
@@ -236,33 +239,54 @@ Original source code can be found here: https://github.com/delventhalz/transfer-
 	    </div>
 	    
 	    <div class="Escrow Phase" id="warning_text">
-		WARNING
+		WARNING TEXT
+		System is locked please wait for other parties to complete their tasks. 
 	    </div>
-	    <div class="Escrow Phase" id="lockout">
-		Document:
-	    </div>
-	    
-	    <div id="test" class="form-group">
-		<label>Deploy data to Ethereum </label>
-		<input id="WriteToBlockchain" value="Deploy" class="btn btn-primary" onClick="deployContract()">
-	    </div>
-      <div class="form-group">
-        <label>Transfer Documents</label>
-        <select class="form-control" name="assetSelect">
-          <option value="none" selected>Select Docs...</option>
-        </select>
-        <select class="form-control" name="transferSelect">
-          <option value="none" selected>Select recipient...</option>
-        </select>
-        <input id="transferSubmit" type="button" value="Transfer" class="btn btn-primary">
-      </div>
+	    <div class="Escrow Phase" id="lockout" style="display:block;">
+		
+		
+		
+		<div id="test" class="form-group">
+		    <label>Deploy data to Ethereum </label>
+		    <input id="WriteToBlockchain" value="Deploy" class="btn btn-primary" onClick="deployContract()">
+		</div>
+		<div class="form-group">
+		    <label>Transfer Documents</label>
+		    <select class="form-control" name="assetSelect">
+			<option value="none" selected>Select Docs...</option>
+		    </select>
+		    <select class="form-control" name="transferSelect">
+			<option value="none" selected>Select recipient id...</option>
+		    </select>
+		    <input id="transferSubmit" type="button" value="Transfer" class="btn btn-primary">
+		    <div class="row">
+			<div class="col-md-8">
+			<div class="form-group">
+			    <h1>Review and Approve the Final Public Record</h1>
+			    <label> The information displayed adjacent was taken directly from documents you
+				have already approved. If you find errors here, that means errors also exist that
+				may invalidate or affect your transaction. </label>
+			    <input id="createSubmit" type="button" value="Generate Email code." class="btn btn-primary">
+			    <input id="merkle_root"  class="form-control" type="text" placeholder="Enter code here...">
 
-      <div class="form-group">
-        <label>Accept Tuna</label>
-        <div id="transferList"></div>
-      </div>
-    </div>
-    
+			    <input id="createCancel" type="button" value="Approve Public Record" class="btn btn-secondary">
+
+			    <input id="createSubmit" type="button" value="Notify Escrow Agent of Error" class="btn btn-primary"> OR 			<input id="createSubmit" type="button" value="Delegate to Attorney" class="btn btn-danger">
+			</div>
+			</div>
+			<div class="col-md-4" >
+			    <iframe src="http://localhost:8000/Tax-pdf.pdf" height="800px" width="800px"></iframe>
+			</div>
+		   </div>
+		</div>
+		
+		
+		<div class="form-group">
+		    <label>Accept Document</label>
+		    <div id="transferList"></div>
+		</div>
+	    </div>
+	</div>
     <div id="data">
       <label>Parcel List</label>
       <table class="table table-hover">
