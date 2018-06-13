@@ -7,7 +7,7 @@ Original source code can be found here: https://github.com/delventhalz/transfer-
 
 <html>
 <head>
-  <title>Sawtooth Tuna Chain</title>
+  <title>Sawtooth Property Ledger Demo</title>
   <link rel="icon" href="favicon.png" type="image/gif">
 
   <!-- require jquery and bootstrap scripts -->
@@ -53,7 +53,7 @@ Original source code can be found here: https://github.com/delventhalz/transfer-
   </style>
   <script>
    //From http://hypernephelist.com/2016/06/21/a-simple-smart-contract-ui-web3.html
-  function deployContract(){
+   function deployContract(){
        var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
        var escrowledgerContract = web3.eth.contract([{"constant":true,"inputs":[],"name":"countLedgerEntrys","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"LedgerEntryAccts","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_address","type":"address"}],"name":"getLedgerEntry","outputs":[{"name":"","type":"uint256"},{"name":"","type":"string"},{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_address","type":"address"},{"name":"_money","type":"uint256"},{"name":"_ledgerUser","type":"string"},{"name":"_escrowName","type":"string"}],"name":"setLedgerEntry","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getLedgerEntrys","outputs":[{"name":"","type":"address[]"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]);
        var escrowledger = escrowledgerContract.new(
@@ -77,11 +77,10 @@ Original source code can be found here: https://github.com/delventhalz/transfer-
        console.dir(block.transactions);
    });
    function sendMail() {
-       var link = "mailto:me@example.com"
-		+ "?cc=myCCaddress@example.com"
-		+ "&subject=" + escape("Get PIN code here:")
-		+ "&body=" + escape(+ document.getElementById('createCode').value)
-       ;
+       var link = "mailto:buyer@aconsapart.com"
+		+ "?cc=jherman@aconsapart.com"
+		+ "&subject=" + escape("Get PIN code here:" + document.getElementById("9999"))
+		+ "&body=" + escape(document.getElementById("createBuyerEmail").value);
 
        window.location.href = link;
    }
@@ -132,10 +131,10 @@ Original source code can be found here: https://github.com/delventhalz/transfer-
 			   obj[paramName].push(paramValue);
 		       }
 		   // if array index number specified...
-		else {
-		    // put the value at that index number
-		    obj[paramName][paramNum] = paramValue;
-		}
+			else {
+			    // put the value at that index number
+			    obj[paramName][paramNum] = paramValue;
+			}
 	       }
 	       // if param name doesn't exist yet, set it
 	       else {
@@ -149,10 +148,11 @@ Original source code can be found here: https://github.com/delventhalz/transfer-
    console.log(window.location.href);
    var url_params = getAllUrlParams(window.location.href);
    function unlock(){
+       //$(".lockout").();
        document.getElementById("lockout").style.display="block";
        document.getElementById("warning_text").style.display="none";
    }
-   if(url_params.lockout == "Y"){
+   if(url_params.lockout == "Y" || url_params.lockout == 'y'){
        unlock();
    }
   </script>
@@ -162,8 +162,8 @@ Original source code can be found here: https://github.com/delventhalz/transfer-
 <body>
     
     <header>
-	<div id="left_header">Sawtooth Tuna Chain</div>
-	<i id="right_header">Example Blockchain Application for Introduction to Hyperledger Sawtooth LFS171x</i>
+	<div id="left_header">Sawtooth Property Ledger Demo</div>
+	<!-- -i id="right_header">Example Blockchain Application for Introduction to Hyperledger Sawtooth LFS171x</i-->
     </header>
 
     <div id="body">
@@ -178,19 +178,20 @@ Original source code can be found here: https://github.com/delventhalz/transfer-
 	    <h1>Team Phase:</h1>
 	    <div class="form-group">
 		<label>STEP ONE: Identify Initiator</label>
-		<input id="createName" class="form-control" type="text" placeholder="Enter asset name...">
-		<input id="createAddress" class="form-control" type="text" placeholder="Enter asset contact email...">
-		<input id="createmobilephone"  class="form-control" type="text" placeholder="Enter asset phone number...">
-		<input id="createCode"  class="form-control" type="text" placeholder="Enter PIN...">
+		<input id="createName" class="form-control" type="text" placeholder="Enter asset name..." value="Joshua J Herman">
+		<input id="createAddress" class="form-control" type="text" placeholder="Enter asset contact email..." >
+		<input id="createmobilephone"  class="form-control" type="text" placeholder="Enter asset phone number..." value="3316255728">
+		<input id="createCode"  class="form-control" type="text" placeholder="Enter PIN..." >
 		<input id="createMobilePhone" class="form-control" type="text" placeholder="Enter initiator phone">
 		<select name="initiator_type" id="create_initiator_type" class="form-control" type="text" placeholder="Enter Initiator type">
 		    <option value="Realitor">Realitor</option>
 		    <option value="Buyer">Buyer</option>
 		    <option value="Seller">Seller</option>
-
+                    <option value="Buyer_Attorney">Buyer Attorney</option>  
+		    <option value="Seller_Attorney">Buyer Attorney</option>  
 		</select>
 		<select name="transactionSelect" id="create_transaction_type" class="form-control" type="text" placeholder="Enter Initiator type">
-		    <option value="Residential">Residential</option>
+		    <option selected value="Residential">Residential</option>
 		    <option value="Commercial">Commercial</option>
 		    <option value="Seller">Seller</option>
 
@@ -199,34 +200,36 @@ Original source code can be found here: https://github.com/delventhalz/transfer-
 
 	    <div class="form-group">
 		<label> Step Two: Identify Parcel</label>
+		
 		<input id="createCommonStreetAddress" class="form-control" type="text" placeholder="Parcel Street Address">
 		<input id="createParcelIndexNumber" class="form-control" type="text" placeholder="Enter parcel index number...">
 		<input id="confirmPIN" class="form-control" type="text" placeholder="Confirm parcel index number...">
 		<input id="merkle_root"  class="form-control" type="text" placeholder="Enter parcel Merkle_root...">
-		<input id="createMLSID"  class="form-control" type="text" placeholder="Confirm MLSID...">
+		<input id="createMLSID"  class="form-control" type="text" placeholder="Confirm MLSID...">  
 
 		</select>    
 		<input id="createCancel" type="button" value="Cancel" class="btn btn-secondary">
 
 		<input id="createSubmit" type="button" value="Create" class="btn btn-primary">
 	    </div>
+	    <div id="HideInvite">
+		<h1>Team Phase:</h1>
+		<div class="form-group">
+		    <label> Send Invites</label>
+		    <input id="createBuyerEmail" class="form-control" type="text" placeholder="Enter Buyser Email">
+		    <input id="createParcelIndexNumber" class="form-control" type="text" placeholder="Enter parcel index number...">
+		    <input id="merkle_root"  class="form-control" type="text" placeholder="Enter parcel Merkle_root...">
 
-	    <h1>Team Phase:</h1>
-	    <div class="form-group">
-		<label> Send Invites</label>
-		<input id="createBuyerEmail" class="form-control" type="text" placeholder="Enter Buyser Email">
-		<input id="createParcelIndexNumber" class="form-control" type="text" placeholder="Enter parcel index number...">
-		<input id="merkle_root"  class="form-control" type="text" placeholder="Enter parcel Merkle_root...">
+		    <input id="createCancel" type="button" value="Cancel" class="btn btn-secondary">
 
-		<input id="createCancel" type="button" value="Cancel" class="btn btn-secondary">
-
-		<input id="createSubmit" type="button" value="Create" class="btn btn-primary">
+		    <input id="sendEmail" type="button" value="Invite" class="btn btn-primary" onClick=sendMail()>
+		</div>
 	    </div>
 	    <div class="form-group">
 		<h1> Load Circulate Modify Phase </h1>
-		<h4 style="color: red;"> Parties Left for Approval : Client, Attorney</h4>
-		    <label> Select Files to Share</label>
-		    <label for="exampleInputFile">File input</label>
+		<h4 class="lockout" style="color: red;"> Parties Left for Approval : Seller, Buyer Attorney, Seller Attorney</h4>
+		    
+		<label for="exampleInputFile"> Select Files to Share</label>
 		    <input type="file" multiple="multiple" id="exampleInputFile">
 		    <p class="help-block">Attach documents to be signed by other parties.</p>
 	    </div>
@@ -237,31 +240,17 @@ Original source code can be found here: https://github.com/delventhalz/transfer-
 
 
 	    </div>
-	    
+	  
 	    <div class="Escrow Phase" id="warning_text">
-		WARNING TEXT
+		WARNING
 		System is locked please wait for other parties to complete their tasks. 
 	    </div>
-	    <div class="Escrow Phase" id="lockout" style="display:block;">
+	    <div class="Escrow Phase" id="lockout" style="display:none;" >
 		
 		
 		
-		<div id="test" class="form-group">
-		    <label>Deploy data to Ethereum </label>
-		    <input id="WriteToBlockchain" value="Deploy" class="btn btn-primary" onClick="deployContract()">
-		</div>
-		<div class="form-group">
-		    <label>Transfer Documents</label>
-		    <select class="form-control" name="assetSelect">
-			<option value="none" selected>Select Docs...</option>
-		    </select>
-		    <select class="form-control" name="transferSelect">
-			<option value="none" selected>Select recipient id...</option>
-		    </select>
-		    <input id="transferSubmit" type="button" value="Transfer" class="btn btn-primary">
-		    <div class="row">
-			<div class="col-md-8">
-			<div class="form-group">
+	
+		   <div class="form-group">
 			    <h1>Review and Approve the Final Public Record</h1>
 			    <label> The information displayed adjacent was taken directly from documents you
 				have already approved. If you find errors here, that means errors also exist that
@@ -272,14 +261,60 @@ Original source code can be found here: https://github.com/delventhalz/transfer-
 			    <input id="createCancel" type="button" value="Approve Public Record" class="btn btn-secondary">
 
 			    <input id="createSubmit" type="button" value="Notify Escrow Agent of Error" class="btn btn-primary"> OR 			<input id="createSubmit" type="button" value="Delegate to Attorney" class="btn btn-danger">
-			</div>
-			</div>
-			<div class="col-md-4" >
-			    <iframe src="http://localhost:8000/Tax-pdf.pdf" height="800px" width="800px"></iframe>
-			</div>
+			
+			    <BR>
+			    <pre>
+COOK COUNTY ILLINOIS USA
+
+02-11-2018 :: 14:22:08
+
+TX NUMBER: 2018000000001
+
+INSTRUMENT TYPE: Warranty Deed
+
+BUYER NAME: Joshua X. Johnson
+
+SELLER NAME: Miriam T. and Michael R. Smith
+
+COMMON ADDRESS: 342 Ames Street, Chicago Illinois
+
+PIN of PROPERTY: 12-41-025-014-0000
+
+HASH OF LEGAL DESCRIPTION: 1d345jle6sera453lkj3xxes46432d
+
+1st PRIOR DOCUMENT NUMBER: 201335554032
+
+SIGNED BY BUYER: Yes
+
+SIGNED BY SELLER: Yes
+
+NOTARY SIGNATURE: 1343ksd88ds070980se876s99
+
+MUNICIPAL TAX PAID: 100.00
+
+COUNTY TAX PAID: 500.00
+
+STATE TAX PAID: 1000.00
+
+HASH OF SALES CONTRACT: 1dfi3453l898s9dgfsss989
+
+HASH OF MORTGAGE
+
+-
+
+LIEN: 1fdf8d5dddghhh8rgh88d6
+
+HASH OF THIS TX DATA: 1dk3345kjli3453idf0d
+			    </pre>
+			    
 		   </div>
-		</div>
-		
+
+	    </div>
+	    <div id="test" class="form-group">
+		<label>Deploy data to Ethereum </label>
+		<input id="WriteToBlockchain" value="Deploy" class="btn btn-primary" onClick="deployContract()">
+	    </div>
+	    
 		
 		<div class="form-group">
 		    <label>Accept Document</label>
@@ -298,6 +333,7 @@ Original source code can be found here: https://github.com/delventhalz/transfer-
 	  <th>Mobile Phone</th>
 	  <th>Initiator Type</th>
 	  <th>Transaction Type</th>
+	  
 	  
         </tr>
         <tbody id="assetList"></tbody>
