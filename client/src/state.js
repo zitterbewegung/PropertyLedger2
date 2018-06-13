@@ -18,7 +18,7 @@ const secp256k1 = require('sawtooth-sdk/signing/secp256k1')
 
 // Config variables
 const KEY_NAME = 'transfer-chain.keys'
-const API_URL = 'http://localhost:8000/api'
+const API_URL = 'http://168.62.166.36:8000/api'
 
 const FAMILY = 'transfer-chain'
 const VERSION = '0.0'
