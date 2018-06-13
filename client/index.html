@@ -54,7 +54,7 @@ Original source code can be found here: https://github.com/delventhalz/transfer-
   <script>
    //From http://hypernephelist.com/2016/06/21/a-simple-smart-contract-ui-web3.html
    function deployContract(){
-       var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+       var web3 = new Web3(new Web3.providers.HttpProvider("http://168.62.166.36:8545"));
        var escrowledgerContract = web3.eth.contract([{"constant":true,"inputs":[],"name":"countLedgerEntrys","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"LedgerEntryAccts","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_address","type":"address"}],"name":"getLedgerEntry","outputs":[{"name":"","type":"uint256"},{"name":"","type":"string"},{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_address","type":"address"},{"name":"_money","type":"uint256"},{"name":"_ledgerUser","type":"string"},{"name":"_escrowName","type":"string"}],"name":"setLedgerEntry","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getLedgerEntrys","outputs":[{"name":"","type":"address[]"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]);
        var escrowledger = escrowledgerContract.new(
 	   {
