@@ -149,18 +149,18 @@ Original source code can be found here: https://github.com/delventhalz/transfer-
    console.log(window.location.href);
    var url_params = getAllUrlParams(window.location.href);
    function unlock(){
-       //$(".lockout").();
-       document.getElementById("lockout").style.display="block";
-       document.getElementById("warning_text").style.display="none";
-   }
-   if(url_params.lockout == "Y" || url_params.lockout == 'y'){
-       unlock();
+     if(url_params.lockout == "Y" || url_params.lockout == 'y'){
+				     
+       document.getElementById("lockout").style.display="none";
+       document.getElementById("warning_text").style.display="block";
+      }
+     
    }
   </script>
  
   
 </head>
-<body>
+<body onload="unlock()">
     
     <header>
 	<div id="left_header">Sawtooth Property Ledger Demo</div>
@@ -226,9 +226,9 @@ Original source code can be found here: https://github.com/delventhalz/transfer-
 		    <input id="sendEmail" type="button" value="Invite" class="btn btn-primary" onClick=sendMail()>
 		</div>
 	    </div>
-	    <div class="form-group">
+	    <div class="form-group"  id="lockout_modify">
 		<h1> Load Circulate Modify Phase </h1>
-		<h4 class="lockout" style="color: red;"> Parties Left for Approval : Seller, Buyer Attorney, Seller Attorney</h4>
+		<h4 style="color: red;"> Parties Left for Approval : Seller, Buyer Attorney, Seller Attorney</h4>
 		    
 		<label for="exampleInputFile"> Select Files to Share</label>
 		    <input type="file" multiple="multiple" id="exampleInputFile">
@@ -246,7 +246,7 @@ Original source code can be found here: https://github.com/delventhalz/transfer-
 		WARNING
 		System is locked please wait for other parties to complete their tasks. 
 	    </div>
-	    <div class="Escrow Phase" id="lockout" style="display:none;" >
+	    <div class="Escrow Phase" id="lockout"  >
 		
 		
 		
