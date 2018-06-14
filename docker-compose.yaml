@@ -115,6 +115,15 @@ services:
       "
   ganachecli:
         image: trufflesuite/ganache-cli:latest
-        command: bash -c "ganache-cli -h 0.0.0.0"
+        command: ["-d", "-p", "8545", "--hostname", "0.0.0.0"]
+        #command: bash -c "ganache-cli --hostname 0.0.0.0"
+        expose: 
+         - 8545
         ports:
-        - 8545:8545
+         - 0.0.0.0:8545:8545
+#nginx-proxy:
+#       image: jwilder/nginx-proxy
+#       ports:
+#        - "8545:7545"
+#       volumes:
+#        - /var/run/docker.sock:/tmp/docker.sock:ro
