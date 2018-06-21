@@ -50,6 +50,19 @@
 	     vertical-align: top;
 	     margin-left: 2%;
 	 }
+	 @media print {
+	     body * {
+		 visibility: hidden;
+	     }
+	     #section-to-print, #section-to-print * {
+		 visibility: visible;
+	     }
+	     #section-to-print {
+		 position: absolute;
+		 left: 0;
+		 top: 0;
+	     }
+	 }
 	</style>
 	<script>
 	 //From http://hypernephelist.com/2016/06/21/a-simple-smart-contract-ui-web3.html
@@ -291,49 +304,84 @@
 				<input id="createSubmit" type="button" value="Notify Escrow Agent of Error" class="btn btn-primary"> OR 			<input id="createSubmit" type="button" value="Delegate to Attorney" class="btn btn-danger">
 				
 				<BR>
-				<pre>
-COOK COUNTY ILLINOIS USA
+				<div class="container" id="section-to-print">
+				    <div class="row">
+					<div class="col-md-8">
+					    
 
-02-11-2018 :: 14:22:08
+					    <BR><BR>
+					    COOK COUNTY ILLINOIS USA
+					    <BR><BR>
+					    02-11-2018 :: 14:22:08
+					    <BR><BR>
+					    TX NUMBER: 2018000000001
+					    <BR><BR>
+					    INSTRUMENT TYPE: Warranty Deed
+					    <BR><BR>
+					    BUYER NAME: Joshua X. Johnson
+					    <BR><BR>
+					    SELLER NAME: Miriam T. and Michael R. Smith
+					    <BR><BR>
+					    COMMON ADDRESS: 342 Ames Street, Chicago Illinois
+					    <BR><BR>
+					    PIN of PROPERTY: 12-41-025-014-0000
+					    <BR><BR>
+					    HASH OF LEGAL DESCRIPTION: 1d345jle6sera453lkj3xxes46432d
+					    <BR><BR>
+					    1st PRIOR DOCUMENT NUMBER: 201335554032
+					    <BR><BR>
+					    SIGNED BY BUYER: Yes
+					    <BR><BR>
+					    SIGNED BY SELLER: Yes
+					    <BR><BR>
+					    NOTARY SIGNATURE: 1343ksd88ds070980se876s99
+					    <BR><BR>
+					    MUNICIPAL TAX PAID: 100.00
+					    <BR><BR>
+					    COUNTY TAX PAID: 500.00
+					    <BR><BR>
+					    STATE TAX PAID: 1000.00
+					    <BR><BR>
+					    HASH OF SALES CONTRACT: 1dfi3453l898s9dgfsss989
+					    <BR><BR>
+					    HASH OF MORTGAGE
+					    <BR><BR>
+					    -
+					    <BR><BR>
+					    LIEN: 1fdf8d5dddghhh8rgh88d6
+					    <BR><BR>
+					    HASH OF THIS TX DATA: 1dk3345kjli3453idf0d
+					   	    
+					</div>
+					<div class="col-md-4">
 
-TX NUMBER: 2018000000001
+					    <img src="qrcode.gif">
+					    <BR><BR>
+					    <BR><BR>
+					    <BR><BR>
+					    <BR><BR>
+					    <BR><BR>
+					    <BR><BR>
+					    <BR><BR>
+					    <BR><BR>
+					    <BR><BR>
+					    <BR><BR><BR><BR>
+					    <BR><BR>
+					    
 
-INSTRUMENT TYPE: Warranty Deed
+					    <div style="border: 5px solid black;">
+						<BR><BR>
+						<BR><BR>
+					
 
-BUYER NAME: Joshua X. Johnson
-
-SELLER NAME: Miriam T. and Michael R. Smith
-
-COMMON ADDRESS: 342 Ames Street, Chicago Illinois
-
-PIN of PROPERTY: 12-41-025-014-0000
-
-HASH OF LEGAL DESCRIPTION: 1d345jle6sera453lkj3xxes46432d
-
-1st PRIOR DOCUMENT NUMBER: 201335554032
-
-SIGNED BY BUYER: Yes
-
-SIGNED BY SELLER: Yes
-
-NOTARY SIGNATURE: 1343ksd88ds070980se876s99
-
-MUNICIPAL TAX PAID: 100.00
-
-COUNTY TAX PAID: 500.00
-
-STATE TAX PAID: 1000.00
-
-HASH OF SALES CONTRACT: 1dfi3453l898s9dgfsss989
-
-HASH OF MORTGAGE
-
--
-
-LIEN: 1fdf8d5dddghhh8rgh88d6
-
-HASH OF THIS TX DATA: 1dk3345kjli3453idf0d
-				</pre>
+						<div class="center-block">NOTARIZE HERE</div>
+						<BR><BR>
+						<BR><BR>
+					
+					    </div>
+					</div>
+				    </div>
+				
 				
 			    </div>
 
