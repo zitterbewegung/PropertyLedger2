@@ -1,277 +1,297 @@
 <!DOCTYPE html>
 
 <!-- SPDX-License-Identifier: Apache-2.0 -->
-<!-- This code was written by Zac Delventhal @delventhalz. 
-Original source code can be found here: https://github.com/delventhalz/transfer-chain-js/blob/master/client/index.html
+<!-- This code was written by Zac Delventhal @delventhalz.
+     Original source code can be found here: https://github.com/delventhalz/transfer-chain-js/blob/master/client/index.html
 -->
 
 <html>
-<head>
-  <title>Sawtooth Property Ledger Demo</title>
-  <link rel="icon" href="favicon.png" type="image/gif">
+    <head>
+	<title>Sawtooth Property Ledger Demo</title>
+	<link rel="icon" href="favicon.png" type="image/gif">
 
-  <!-- require jquery and bootstrap scripts -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
-  <!-- adding style here -->
-  <style type="text/css">
-    header{
-      background-color: lightgray;
-      font-size:20px;
-      padding:15px;
-    }
-    header, .form-group{
-      margin-bottom: 3%;
-    }
-    #body{
-      margin-left:3%;
-    }
-    .form-control{
-      margin: 8px;
-    }
-    #right_header{
-      width:20%;
-      font-size:15px;
-      margin-right:0px;
-    }
-    #left_header{
-      margin-left:0;
-      width:45%;
-      display:inline-block;
-    }
-    #left-column{
-      display:inline-block;
-    }
-    #data{
-      display: inline-block;
-      width: 45%;
-      vertical-align: top;
-      margin-left: 2%;
-    }
-  </style>
-  <script>
-   //From http://hypernephelist.com/2016/06/21/a-simple-smart-contract-ui-web3.html
-   function deployContract(){
-       var web3 = new Web3(new Web3.providers.HttpProvider("http://168.62.166.36:8545"));
-       var escrowledgerContract = web3.eth.contract([{"constant":true,"inputs":[],"name":"countLedgerEntrys","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"LedgerEntryAccts","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_address","type":"address"}],"name":"getLedgerEntry","outputs":[{"name":"","type":"uint256"},{"name":"","type":"string"},{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_address","type":"address"},{"name":"_money","type":"uint256"},{"name":"_ledgerUser","type":"string"},{"name":"_escrowName","type":"string"}],"name":"setLedgerEntry","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getLedgerEntrys","outputs":[{"name":"","type":"address[]"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]);
-       var escrowledger = escrowledgerContract.new(
-	   {
-	       from: web3.eth.accounts[0], 
-	       data: '0x60806040523480156200001157600080fd5b506200009b306130706040805190810160405280600681526020017f4c454e44455200000000000000000000000000000000000000000000000000008152506040805190810160405280600381526020017f555344000000000000000000000000000000000000000000000000000000000081525062000459640100000000026401000000009004565b620001233060006040805190810160405280600581526020017f42555945520000000000000000000000000000000000000000000000000000008152506040805190810160405280600481526020017f444545440000000000000000000000000000000000000000000000000000000081525062000459640100000000026401000000009004565b620001ab3060006040805190810160405280600681526020017f53454c4c455200000000000000000000000000000000000000000000000000008152506040805190810160405280600481526020017f444545440000000000000000000000000000000000000000000000000000000081525062000459640100000000026401000000009004565b620002333060006040805190810160405280600981526020017f4c45494e2d42414e4b00000000000000000000000000000000000000000000008152506040805190810160405280600781526020017f52454c454153450000000000000000000000000000000000000000000000000081525062000459640100000000026401000000009004565b620002bb3060006040805190810160405280600781526020017f4348494341474f000000000000000000000000000000000000000000000000008152506040805190810160405280600781526020017f54415842494c4c0000000000000000000000000000000000000000000000000081525062000459640100000000026401000000009004565b620003433060006040805190810160405280600e81526020017f42555945525f5245414c49544f520000000000000000000000000000000000008152506040805190810160405280600a81526020017f434f4d4d495353494f4e0000000000000000000000000000000000000000000081525062000459640100000000026401000000009004565b620003cb3060006040805190810160405280600f81526020017f53454c4c45525f524541494c544f5200000000000000000000000000000000008152506040805190810160405280601181526020017f434f4d4d4953494f4e5f494e564f49434500000000000000000000000000000081525062000459640100000000026401000000009004565b620004533060006040805190810160405280600581526020017f42555945520000000000000000000000000000000000000000000000000000008152506040805190810160405280601581526020017f53454c4c45525f464545535f414e445f5441584553000000000000000000000081525062000459640100000000026401000000009004565b620005f8565b60008060008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020905083816000018190555082816001019080519060200190620004be92919062000549565b5081816002019080519060200190620004d992919062000549565b506001808690806001815401808255809150509060018203906000526020600020016000909192909190916101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050505050505050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106200058c57805160ff1916838001178555620005bd565b82800160010185558215620005bd579182015b82811115620005bc5782518255916020019190600101906200059f565b5b509050620005cc9190620005d0565b5090565b620005f591905b80821115620005f1576000816000905550600101620005d7565b5090565b90565b61082280620006086000396000f30060806040526004361061006d576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063545afadd146100725780639cd870581461009d578063a89a88841461010a578063f629a2c614610239578063f6e7d5ba14610312575b600080fd5b34801561007e57600080fd5b5061008761037e565b6040518082815260200191505060405180910390f35b3480156100a957600080fd5b506100c86004803603810190808035906020019092919050505061038b565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561011657600080fd5b5061014b600480360381019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506103c9565b604051808481526020018060200180602001838103835285818151815260200191508051906020019080838360005b8381101561019557808201518184015260208101905061017a565b50505050905090810190601f1680156101c25780820380516001836020036101000a031916815260200191505b50838103825284818151815260200191508051906020019080838360005b838110156101fb5780820151818401526020810190506101e0565b50505050905090810190601f1680156102285780820380516001836020036101000a031916815260200191505b509550505050505060405180910390f35b34801561024557600080fd5b50610310600480360381019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509192919290803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091929192905050506105d7565b005b34801561031e57600080fd5b506103276106c3565b6040518080602001828103825283818151815260200191508051906020019060200280838360005b8381101561036a57808201518184015260208101905061034f565b505050509050019250505060405180910390f35b6000600180549050905090565b60018181548110151561039a57fe5b906000526020600020016000915054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60006060806000808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600001546000808673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206001016000808773ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600201818054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156105275780601f106104fc57610100808354040283529160200191610527565b820191906000526020600020905b81548152906001019060200180831161050a57829003601f168201915b50505050509150808054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156105c35780601f10610598576101008083540402835291602001916105c3565b820191906000526020600020905b8154815290600101906020018083116105a657829003601f168201915b505050505090509250925092509193909250565b60008060008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002090508381600001819055508281600101908051906020019061063a929190610751565b5081816002019080519060200190610653929190610751565b506001808690806001815401808255809150509060018203906000526020600020016000909192909190916101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050505050505050565b6060600180548060200260200160405190810160405280929190818152602001828054801561074757602002820191906000526020600020905b8160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190600101908083116106fd575b5050505050905090565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061079257805160ff19168380011785556107c0565b828001600101855582156107c0579182015b828111156107bf5782518255916020019190600101906107a4565b5b5090506107cd91906107d1565b5090565b6107f391905b808211156107ef5760008160009055506001016107d7565b5090565b905600a165627a7a7230582012eac96070a40aaa4d1ec2ce302e8a6d64e5a9fdf410b45c6280dea4bfb2785c0029', 
-	       gas: '4700000'
-	   }, function (e, contract){
-	       console.log(e, contract);
-	       if (typeof contract.address !== 'undefined') {
-		   console.log('Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
-	       }
-	   });
-      var filter = web3.eth.filter('latest');
-   filter.watch(function(error, result) {
-   var block = web3.eth.getBlock(result, true);
-   console.log('block #' + block.number);
-       console.dir(block.transactions);
-   });
+	<!-- require jquery and bootstrap scripts -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-   }
-   //escrowledger.setLedgerEntry(web3.eth.accounts[0],12400,"LENDER","USD");
-   
-   function sendMail() {
-       var link = "mailto:buyer@aconsapart.com"
-		+ "?cc=jherman@aconsapart.com"
-		+ "&subject=" + escape("Get PIN code here:" + document.getElementById("9999"))
-		+ "&body=" + escape(document.getElementById("createBuyerEmail").value);
+	<!-- adding style here -->
+	<style type="text/css">
+	 header{
+	     background-color: lightgray;
+	     font-size:20px;
+	     padding:15px;
+	 }
+	 header, .form-group{
+	     margin-bottom: 3%;
+	 }
+	 #body{
+	     margin-left:3%;
+	 }
+	 .form-control{
+	     margin: 8px;
+	 }
+	 #right_header{
+	     width:20%;
+	     font-size:15px;
+	     margin-right:0px;
+	 }
+	 #left_header{
+	     margin-left:0;
+	     width:45%;
+	     display:inline-block;
+	 }
+	 #left-column{
+	     display:inline-block;
+	 }
+	 #data{
+	     display: inline-block;
+	     width: 45%;
+	     vertical-align: top;
+	     margin-left: 2%;
+	 }
+	</style>
+	<script>
+	 //From http://hypernephelist.com/2016/06/21/a-simple-smart-contract-ui-web3.html
+	 function deployContract(){
+	     var web3 = new Web3(new Web3.providers.HttpProvider("http://168.62.166.36:8545"));
+	     var escrowledgerContract = web3.eth.contract([{"constant":true,"inputs":[],"name":"countLedgerEntrys","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"LedgerEntryAccts","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_address","type":"address"}],"name":"getLedgerEntry","outputs":[{"name":"","type":"uint256"},{"name":"","type":"string"},{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_address","type":"address"},{"name":"_money","type":"uint256"},{"name":"_ledgerUser","type":"string"},{"name":"_escrowName","type":"string"}],"name":"setLedgerEntry","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getLedgerEntrys","outputs":[{"name":"","type":"address[]"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]);
+	     var escrowledger = escrowledgerContract.new(
+		 {
+		     from: web3.eth.accounts[0],
+		     data: '0x60806040523480156200001157600080fd5b506200009b306130706040805190810160405280600681526020017f4c454e44455200000000000000000000000000000000000000000000000000008152506040805190810160405280600381526020017f555344000000000000000000000000000000000000000000000000000000000081525062000459640100000000026401000000009004565b620001233060006040805190810160405280600581526020017f42555945520000000000000000000000000000000000000000000000000000008152506040805190810160405280600481526020017f444545440000000000000000000000000000000000000000000000000000000081525062000459640100000000026401000000009004565b620001ab3060006040805190810160405280600681526020017f53454c4c455200000000000000000000000000000000000000000000000000008152506040805190810160405280600481526020017f444545440000000000000000000000000000000000000000000000000000000081525062000459640100000000026401000000009004565b620002333060006040805190810160405280600981526020017f4c45494e2d42414e4b00000000000000000000000000000000000000000000008152506040805190810160405280600781526020017f52454c454153450000000000000000000000000000000000000000000000000081525062000459640100000000026401000000009004565b620002bb3060006040805190810160405280600781526020017f4348494341474f000000000000000000000000000000000000000000000000008152506040805190810160405280600781526020017f54415842494c4c0000000000000000000000000000000000000000000000000081525062000459640100000000026401000000009004565b620003433060006040805190810160405280600e81526020017f42555945525f5245414c49544f520000000000000000000000000000000000008152506040805190810160405280600a81526020017f434f4d4d495353494f4e0000000000000000000000000000000000000000000081525062000459640100000000026401000000009004565b620003cb3060006040805190810160405280600f81526020017f53454c4c45525f524541494c544f5200000000000000000000000000000000008152506040805190810160405280601181526020017f434f4d4d4953494f4e5f494e564f49434500000000000000000000000000000081525062000459640100000000026401000000009004565b620004533060006040805190810160405280600581526020017f42555945520000000000000000000000000000000000000000000000000000008152506040805190810160405280601581526020017f53454c4c45525f464545535f414e445f5441584553000000000000000000000081525062000459640100000000026401000000009004565b620005f8565b60008060008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020905083816000018190555082816001019080519060200190620004be92919062000549565b5081816002019080519060200190620004d992919062000549565b506001808690806001815401808255809150509060018203906000526020600020016000909192909190916101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050505050505050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106200058c57805160ff1916838001178555620005bd565b82800160010185558215620005bd579182015b82811115620005bc5782518255916020019190600101906200059f565b5b509050620005cc9190620005d0565b5090565b620005f591905b80821115620005f1576000816000905550600101620005d7565b5090565b90565b61082280620006086000396000f30060806040526004361061006d576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063545afadd146100725780639cd870581461009d578063a89a88841461010a578063f629a2c614610239578063f6e7d5ba14610312575b600080fd5b34801561007e57600080fd5b5061008761037e565b6040518082815260200191505060405180910390f35b3480156100a957600080fd5b506100c86004803603810190808035906020019092919050505061038b565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561011657600080fd5b5061014b600480360381019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506103c9565b604051808481526020018060200180602001838103835285818151815260200191508051906020019080838360005b8381101561019557808201518184015260208101905061017a565b50505050905090810190601f1680156101c25780820380516001836020036101000a031916815260200191505b50838103825284818151815260200191508051906020019080838360005b838110156101fb5780820151818401526020810190506101e0565b50505050905090810190601f1680156102285780820380516001836020036101000a031916815260200191505b509550505050505060405180910390f35b34801561024557600080fd5b50610310600480360381019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509192919290803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091929192905050506105d7565b005b34801561031e57600080fd5b506103276106c3565b6040518080602001828103825283818151815260200191508051906020019060200280838360005b8381101561036a57808201518184015260208101905061034f565b505050509050019250505060405180910390f35b6000600180549050905090565b60018181548110151561039a57fe5b906000526020600020016000915054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60006060806000808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600001546000808673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206001016000808773ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600201818054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156105275780601f106104fc57610100808354040283529160200191610527565b820191906000526020600020905b81548152906001019060200180831161050a57829003601f168201915b50505050509150808054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156105c35780601f10610598576101008083540402835291602001916105c3565b820191906000526020600020905b8154815290600101906020018083116105a657829003601f168201915b505050505090509250925092509193909250565b60008060008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002090508381600001819055508281600101908051906020019061063a929190610751565b5081816002019080519060200190610653929190610751565b506001808690806001815401808255809150509060018203906000526020600020016000909192909190916101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050505050505050565b6060600180548060200260200160405190810160405280929190818152602001828054801561074757602002820191906000526020600020905b8160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190600101908083116106fd575b5050505050905090565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061079257805160ff19168380011785556107c0565b828001600101855582156107c0579182015b828111156107bf5782518255916020019190600101906107a4565b5b5090506107cd91906107d1565b5090565b6107f391905b808211156107ef5760008160009055506001016107d7565b5090565b905600a165627a7a7230582012eac96070a40aaa4d1ec2ce302e8a6d64e5a9fdf410b45c6280dea4bfb2785c0029',
+		     gas: '4700000'
+		 }, function (e, contract){
+		     console.log(e, contract);
+		     if (typeof contract.address !== 'undefined') {
+			 console.log('Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
+		     }
+		 });
+	     var filter = web3.eth.filter('latest');
+	     filter.watch(function(error, result) {
+		 var block = web3.eth.getBlock(result, true);
+		 console.log('block #' + block.number);
+		 console.dir(block.transactions);
+	     });
 
-       window.location.href = link;
-   }
-   function getAllUrlParams(url) {
+	 }
+	 //escrowledger.setLedgerEntry(web3.eth.accounts[0],12400,"LENDER","USD");
 
-       // get query string from url (optional) or window
-       var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
+	 function sendMail() {
+	     var link = "mailto:buyer@aconsapart.com"
+		      + "?cc=jherman@aconsapart.com"
+		      + "&subject=" + escape("Get PIN code here:" + document.getElementById("9999"))
+		      + "&body=" + escape(document.getElementById("createBuyerEmail").value);
 
-       // we'll store the parameters here
-       var obj = {};
+	     window.location.href = link;
+	 }
+	 function getAllUrlParams(url) {
 
-       // if query string exists
-       if (queryString) {
+	     // get query string from url (optional) or window
+	     var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
 
-	   // stuff after # is not part of query string, so get rid of it
-	   queryString = queryString.split('#')[0];
+	     // we'll store the parameters here
+	     var obj = {};
 
-	   // split our query string into its component parts
-	   var arr = queryString.split('&');
+	     // if query string exists
+	     if (queryString) {
 
-	   for (var i=0; i<arr.length; i++) {
-	       // separate the keys and the values
-	       var a = arr[i].split('=');
+		 // stuff after # is not part of query string, so get rid of it
+		 queryString = queryString.split('#')[0];
 
-	       // in case params look like: list[]=thing1&list[]=thing2
-	       var paramNum = undefined;
-	       var paramName = a[0].replace(/\[\d*\]/, function(v) {
-		   paramNum = v.slice(1,-1);
-		   return '';
-	       });
+		 // split our query string into its component parts
+		 var arr = queryString.split('&');
 
-	       // set parameter value (use 'true' if empty)
-	       var paramValue = typeof(a[1])==='undefined' ? true : a[1];
+		 for (var i=0; i<arr.length; i++) {
+		     // separate the keys and the values
+		     var a = arr[i].split('=');
 
-	       // (optional) keep case consistent
-	       paramName = paramName.toLowerCase();
-	       paramValue = paramValue.toLowerCase();
+		     // in case params look like: list[]=thing1&list[]=thing2
+		     var paramNum = undefined;
+		     var paramName = a[0].replace(/\[\d*\]/, function(v) {
+			 paramNum = v.slice(1,-1);
+			 return '';
+		     });
 
-	       // if parameter name already exists
-	       if (obj[paramName]) {
-		   // convert value to array (if still string)
-		   if (typeof obj[paramName] === 'string') {
-		       obj[paramName] = [obj[paramName]];
-		   }
-		   // if no array index number specified...
-		       if (typeof paramNum === 'undefined') {
-			   // put the value on the end of the array
-			   obj[paramName].push(paramValue);
-		       }
-		   // if array index number specified...
-			else {
-			    // put the value at that index number
-			    obj[paramName][paramNum] = paramValue;
-			}
+		     // set parameter value (use 'true' if empty)
+		     var paramValue = typeof(a[1])==='undefined' ? true : a[1];
 
-	       }
-	       // if param name doesn't exist yet, set it
-	       else {
-		   obj[paramName] = paramValue;
-	       }
-	   }
-       }
+		     // (optional) keep case consistent
+		     paramName = paramName.toLowerCase();
+		     paramValue = paramValue.toLowerCase();
 
-       return obj;
-   }
-   console.log(window.location.href);
-   var url_params = getAllUrlParams(window.location.href);
-   function unlock(){
-     if(url_params.lockout == "Y" || url_params.lockout == 'y'){
-				     
-       document.getElementById("lockout").style.display="none";
-       document.getElementById("warning_text").style.display="block";
-      }
-     
-   }
-  </script>
- 
-  
-</head>
-<body onload="unlock()">
-    
-    <header>
-	<div id="left_header">Sawtooth Property Ledger Demo</div>
-	<!-- -i id="right_header">Example Blockchain Application for Introduction to Hyperledger Sawtooth LFS171x</i-->
-    </header>
+		     // if parameter name already exists
+		     if (obj[paramName]) {
+			 // convert value to array (if still string)
+			 if (typeof obj[paramName] === 'string') {
+			     obj[paramName] = [obj[paramName]];
+			 }
+			 // if no array index number specified...
+			     if (typeof paramNum === 'undefined') {
+				 // put the value on the end of the array
+				 obj[paramName].push(paramValue);
+			     }
+			 // if array index number specified...
+				else {
+				    // put the value at that index number
+				    obj[paramName][paramNum] = paramValue;
+				}
 
-    <div id="body">
-	<div id="left-column">
-	    <div class="form-group" >
-		<label>Select Holder</label>
-		<select class="form-control" name="keySelect">
-		    <option value="none" selected>Select public key...</option>
-		    <option value="new">Create new key pair</option>
-		</select>
-	    </div>
-	    <h1>Team Phase:</h1>
-	    <div class="form-group">
-		<label>STEP ONE: Identify Initiator</label>
-		<input id="createName" class="form-control" type="text" placeholder="Enter asset name..." value="Joshua J Herman">
-		<input id="createAddress" class="form-control" type="text" placeholder="Enter asset contact email..." value="jherman@example.com">
-		<input id="createmobilephone"  class="form-control" type="text" placeholder="Enter asset phone number..." value="3316255728">
-		<input id="createCode"  class="form-control" type="text" placeholder="Enter PIN..." value="281640104600000">
-		<input id="createMobilePhone" class="form-control" type="text" placeholder="Enter initiator phone">
-		<select name="initiator_type" id="create_initiator_type" class="form-control" type="text" placeholder="Enter Initiator type">
-		    <option selected="selected" value="Realitor">Realitor</option>
-		    <option value="Buyer">Buyer</option>
-		    <option value="Seller">Seller</option>
-                    <option value="Buyer_Attorney">Buyer Attorney</option>  
-		    <option value="Seller_Attorney">Buyer Attorney</option>  
-		</select>
-		<select name="transactionSelect" id="create_transaction_type" class="form-control" type="text" placeholder="Enter Initiator type">
-		    <option selected value="Residential">Residential</option>
-		    <option value="Commercial">Commercial</option>
-		    <option value="Seller">Seller</option>
+		     }
+		     // if param name doesn't exist yet, set it
+		     else {
+			 obj[paramName] = paramValue;
+		     }
+		 }
+	     }
 
-		</select>    
-	    </div>
+	     return obj;
+	 }
+	 console.log(window.location.href);
+	 var url_params = getAllUrlParams(window.location.href);
+	 function unlock(){
+	     if(url_params.lockout == "Y" || url_params.lockout == 'y'){
 
-	    <div class="form-group">
-		<label> Step Two: Identify Parcel</label>
-		<div class="row">
-		    <div class="col-md-4">
+		 document.getElementById("lockout").style.display="none";
+		 document.getElementById("warning_text").style.display="block";
+	     }
+
+	 }
+	</script>
+
+
+    </head>
+    <body onload="unlock()">
+
+	<header>
+	    <div id="left_header">Sawtooth Property Ledger Demo</div>
+	    <!-- -i id="right_header">Example Blockchain Application for Introduction to Hyperledger Sawtooth LFS171x</i-->
+	</header>
+
+	<div id="body">
+	    <ul class="nav nav-tabs">
+		<li class="active"><a data-toggle="tab" href="#sectionA">Team Phase: Step One Identifiy Initiator</a></li>
+		<li><a data-toggle="tab" href="#sectionB">Step Two: Identify Parcel</a></li>
+		<li><a data-toggle="tab" href="#sectionC">Team Phase: Send Invites</a></li>
+		<li><a data-toggle="tab" href="#sectionD">Load Circulate Modify Phase</a></li>
+		<li><a data-toggle="tab" href="#sectionF">Review and Approve Final Public Record</a></li>
+	    </ul>
+	    <div id="left-column">
+		<div class="tab-content">
+		    <div id="sectionA" class="tab-pane fade in active">
+			<div class="form-group" >
+			    <label>Select Holder</label>
+			    <select class="form-control" name="keySelect">
+				<option value="none" selected>Select public key...</option>
+				<option value="new">Create new key pair</option>
+			    </select>
+			</div>
 			
-			<input id="createCommonStreetAddress" class="form-control" type="text" placeholder="Parcel Street Address">
-			<input id="createParcelIndexNumber" class="form-control" type="text" placeholder="Enter parcel index number...">
-			<input id="confirmPIN" class="form-control" type="text" placeholder="Confirm parcel index number...">
-			<input id="merkle_root"  class="form-control" type="text" placeholder="Enter parcel Merkle_root...">
-			<input id="createMLSID"  class="form-control" type="text" placeholder="Confirm MLSID...">  
+			<h1>Team Phase:</h1>
+			<div class="form-group">
+			    <label>STEP ONE: Identify Initiator</label>
+			    <input id="createName" class="form-control" type="text" placeholder="Enter asset name..." value="Joshua J Herman">
+			    <input id="createAddress" class="form-control" type="text" placeholder="Enter asset contact email..." value="jherman@example.com">
+			    <input id="createmobilephone"  class="form-control" type="text" placeholder="Enter asset phone number..." value="3316255728">
+			    <input id="createCode"  class="form-control" type="text" placeholder="Enter PIN..." value="9999">
+			    <input id="createMobilePhone" class="form-control" type="text" placeholder="Enter initiator phone" value="7732766688">
+			    <select name="initiator_type" id="create_initiator_type" class="form-control" type="text" placeholder="Enter Initiator type">
+				<option selected="selected" value="Realitor">Realitor</option>
+				<option value="Buyer">Buyer</option>
+				<option value="Seller">Seller</option>
+				<option value="Buyer_Attorney">Buyer Attorney</option>  
+				<option value="Seller_Attorney">Buyer Attorney</option>  
+			    </select>
 
-		</select>    
-		<input id="createCancel" type="button" value="Cancel" class="btn btn-secondary">
+			    <select name="transactionSelect" id="create_transaction_type" class="form-control" type="text" placeholder="Enter Initiator type">
+				<option selected value="Residential">Residential</option>
+				<option value="Commercial">Commercial</option>
+				<option value="Seller">Seller</option>
 
-		<input id="createSubmit" type="button" value="Create" class="btn btn-primary">
+			    </select>    
+			</div>
 		    </div>
-		    <div class="col-md-8">
-		    	<img src="Capture.png">
+		
+		<div id="sectionB" class="form-group tab-pane fade">
+		    <label> Step Two: Identify Parcel</label>
+		    <div class="row">
+			<div class="col-md-4">
+			    
+			    <input id="createCommonStreetAddress" class="form-control" type="text" placeholder="Parcel Street Address" value="15509 LE CLAIRE AVE">
+			    <input id="createParcelIndexNumber" class="form-control" type="text" placeholder="Enter parcel index number..." value="281640104600000">
+			    <input id="confirmPIN" class="form-control" type="text" placeholder="Confirm parcel index number..." value="281640104600000">
+			    <input id="merkle_root"  class="form-control" type="text" placeholder="Enter parcel Merkle_root..." value="0976cb2d1309dcc25fd8ca4bac341de6d69e4e7d11d89a8935466d7d9cd4f7d01dea678dd0c62bb20af8ff42b07958ac14a2e083c6d5732e678c9f1ff7d191ac">
+			    <input id="createMLSID"  class="form-control" type="text" placeholder="Confirm MLSID...">  
 
-	    </div>
-	    <div id="HideInvite">
-		<h1>Team Phase:</h1>
-		<div class="form-group">
-		    <label> Send Invites</label>
-		    <input id="createBuyerEmail" class="form-control" type="text" placeholder="Enter Buyser Email">
-		    <input id="createParcelIndexNumber" class="form-control" type="text" placeholder="Enter parcel index number...">
-		    <input id="merkle_root"  class="form-control" type="text" placeholder="Enter parcel Merkle_root...">
-
+		    </select>    
 		    <input id="createCancel" type="button" value="Cancel" class="btn btn-secondary">
 
-		    <input id="sendEmail" type="button" value="Invite" class="btn btn-primary" onClick=sendMail()>
+		    <input id="createSubmit" type="button" value="Create" class="btn btn-primary">
+			</div>
+			<div class="col-md-8">
+		    	    <img src="Capture.png">
+
+			</div>
+		    </div>
 		</div>
-	    </div>
-	    <div class="form-group"  id="lockout_modify">
-		<h1> Load Circulate Modify Phase </h1>
-		<h4 style="color: red;"> Parties Left for Approval : Seller, Buyer Attorney, Seller Attorney</h4>
-		    
-		<label for="exampleInputFile"> Select Files to Share</label>
-		    <input type="file" multiple="multiple" id="exampleInputFile">
-		    <p class="help-block">Attach documents to be signed by other parties.</p>
-	    </div>
-	    <div class="form-group">
-		
-		<label>Please confirm that all of the above forms will be distributed to continue.</label>
-		<input type="checkbox">
+			<div id="sectionC" class="form-group tab-pane fade">
+			    
+			    <div id="HideInvite">
+				<h1>Team Phase:</h1>
+				<div class="form-group">
+				    <label> Send Invites</label>
+				    <input id="createBuyerEmail" class="form-control" type="text" placeholder="Enter Buyer Email" value="buyer@example.com">
+				    <input id="createParcelIndexNumber" class="form-control" type="text" placeholder="Enter parcel index number..." value="28164010460000">
+				    <input id="merkle_root"  class="form-control" type="text" placeholder="Enter parcel Merkle_root..." value="0976cb2d1309dcc25fd8ca4bac341de6d69e4e7d11d89a8935466d7d9cd4f7d01dea678dd0c62bb20af8ff42b07958ac14a2e083c6d5732e678c9f1ff7d191ac">
+
+				    <input id="createCancel" type="button" value="Cancel" class="btn btn-secondary">
+
+				    <input id="sendEmail" type="button" value="Invite" class="btn btn-primary" onClick=sendMail()>
+				</div>
+			    </div>
+			</div>
+			<div id="sectionD" class="tab-pane fade">
+			    <div class="form-group"  id="lockout_modify">
+				<h1> Load Circulate Modify Phase </h1>
+				<h4 style="color: red;"> Parties Left for Approval : Seller, Buyer Attorney, Seller Attorney</h4>
+				
+				<label for="exampleInputFile"> Select Files to Share</label>
+				<input type="file" multiple="multiple" id="exampleInputFile">
+				<p class="help-block">Attach documents to be signed by other parties.</p>
+			    </div>
+			    <div class="form-group">
+				
+				<label>Please confirm that all of the above forms will be distributed to continue.</label>
+				<input type="checkbox">
 
 
-	    </div>
-	  
-	    <div class="Escrow Phase" id="warning_text">
-		WARNING
-		System is locked please wait for other parties to complete their tasks. 
-	    </div>
-	    <div class="Escrow Phase" id="lockout"  >
-		
-		
-		
-	
-		   <div class="form-group">
-			    <h1>Review and Approve the Final Public Record</h1>
-			    <label> The information displayed adjacent was taken directly from documents you
-				have already approved. If you find errors here, that means errors also exist that
-				may invalidate or affect your transaction. </label>
-			    <input id="createSubmit" type="button" value="Generate Email code." class="btn btn-primary">
-			    <input id="merkle_root"  class="form-control" type="text" placeholder="Enter code here...">
+			    </div>
+			</div>
+		 <div id="sectionF" class="tab-pane fade">
+		     <div class="Escrow Phase" id="warning_text">
+			 <!-- WARNING
+			      System is locked please wait for other parties to complete their tasks.
+			 -->
+		     </div>
+		     <div class="Escrow Phase" id="lockout"  >
+			    
+			    
+			    
+			    
+			    <div class="form-group">
+				<h1>Review and Approve the Final Public Record</h1>
+				<label> The information displayed adjacent was taken directly from documents you
+				    have already approved. If you find errors here, that means errors also exist that
+				    may invalidate or affect your transaction. </label>
+				<input id="createSubmit" type="button" value="Generate Email code." class="btn btn-primary">
+				<input id="merkle_root"  class="form-control" type="text" placeholder="Enter code here...">
 
-			    <input id="createCancel" type="button" value="Approve Public Record" class="btn btn-secondary">
+				<input id="createCancel" type="button" value="Approve Public Record" class="btn btn-secondary">
 
-			    <input id="createSubmit" type="button" value="Notify Escrow Agent of Error" class="btn btn-primary"> OR 			<input id="createSubmit" type="button" value="Delegate to Attorney" class="btn btn-danger">
-			
-			    <BR>
-			    <pre>
+				<input id="createSubmit" type="button" value="Notify Escrow Agent of Error" class="btn btn-primary"> OR 			<input id="createSubmit" type="button" value="Delegate to Attorney" class="btn btn-danger">
+				
+				<BR>
+				<pre>
 COOK COUNTY ILLINOIS USA
 
 02-11-2018 :: 14:22:08
@@ -313,42 +333,43 @@ HASH OF MORTGAGE
 LIEN: 1fdf8d5dddghhh8rgh88d6
 
 HASH OF THIS TX DATA: 1dk3345kjli3453idf0d
-			    </pre>
-			    
-		   </div>
+				</pre>
+				
+			    </div>
 
-	    </div>
-	    <div id="test" class="form-group">
-		<label>Deploy data to Ethereum </label>
-		<input id="WriteToBlockchain" value="Deploy" class="btn btn-primary" onClick="deployContract()">
-	    </div>
-	    
-		
-		<div class="form-group">
-		    <label>Accept Document</label>
-		    <div id="transferList"></div>
+			</div>
+			<div id="test" class="form-group">
+			    <label>Deploy data to Ethereum </label>
+			    <input id="WriteToBlockchain" value="Deploy" class="btn btn-primary" onClick="deployContract()">
+			</div>
+			
+			
+			<div class="form-group">
+			    <label>Accept Document</label>
+			    <div id="transferList"></div>
+			</div>
 		</div>
 	    </div>
 	</div>
-    <div id="data">
-      <label>Parcel List</label>
-      <table class="table table-hover">
-        <tr>
-          <th>Parcel</th>
-          <th>Holder_private_key</th>
-	  <th>Address</th>
-	  <th>Pin</th>
-	  <th>Mobile Phone</th>
-	  <th>Initiator Type</th>
-	  <th>Transaction Type</th>
-	  
-	  
-        </tr>
-        <tbody id="assetList"></tbody>
-      </table>
-    </div>
-  </div>
+		<div id="data">
+		    <label>Parcel List</label>
+		    <table class="table table-hover">
+			<tr>
+			    <th>Parcel</th>
+			    <th>Holder_private_key</th>
+			    <th>Address</th>
+			    <th>Pin</th>
+			    <th>Mobile Phone</th>
+			    <th>Initiator Type</th>
+			    <th>Transaction Type</th>
+			    
+			    
+			</tr>
+			<tbody id="assetList"></tbody>
+		    </table>
+		</div>
+	    </div>
 
-<script src="dist/bundle.js"></script>
-</body>
+	    <script src="dist/bundle.js"></script>
+    </body>
 </html>
