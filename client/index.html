@@ -50,19 +50,80 @@
 	     vertical-align: top;
 	     margin-left: 2%;
 	 }
-	 @media print {
-	     body * {
-		 visibility: hidden;
-	     }
-	     #section-to-print, #section-to-print * {
-		 visibility: visible;
-	     }
-	     #section-to-print {
-		 position: absolute;
-		 left: 0;
-		 top: 0;
-	     }
+	 #padding {
+	     padding-top: 100px;
+	     padding-right: 100px;
+	     padding-bottom: 100px;
+	     padding-left: 100px;
 	 }
+	 
+	     @media print {
+		 body * {
+		     visibility: hidden;
+		 }
+		 #section-to-print, #section-to-print * {
+		     visibility: visible;
+		 }
+		 #section-to-print {
+		     position: absolute;
+		     left: 40;
+		     top: 0;
+		 }
+		 .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
+		     float: left;
+		 }
+		 .col-sm-12 {
+		     width: 100%;
+		 }
+		 .col-sm-11 {
+		     width: 91.66666666666666%;
+		 }
+		 .col-sm-10 {
+		     width: 83.33333333333334%;
+		 }
+		 .col-sm-9 {
+		     width: 75%;
+		 }
+		 .col-sm-8 {
+		     width: 66.66666666666666%;
+		 }
+		 .col-sm-7 {
+		     width: 58.333333333333336%;
+		 }
+		 .col-sm-6 {
+		     width: 50%;
+		 }
+		 .col-sm-5 {
+		     width: 41.66666666666667%;
+		 }
+		 .col-sm-4 {
+		     width: 33.33333333333333%;
+		 }
+		 .col-sm-3 {
+		     width: 25%;
+		 }
+		 .col-sm-2 {
+		     width: 16.666666666666664%;
+		 }
+		 .col-sm-1 {
+		     width: 8.333333333333332%;
+		 }
+		 #padding {
+		     padding-top: 100px;
+		     padding-right: 100px;
+		     padding-bottom: 100px;
+		     padding-left: 100px;
+		 }
+		 
+		 .center-block {
+		     margin-left:auto;
+		     margin-right:auto;
+		     display:block;
+		 }
+		 .text-center {
+		     text-align:center
+		 }
+	     }
 	</style>
 	<script>
 	 //From http://hypernephelist.com/2016/06/21/a-simple-smart-contract-ui-web3.html
@@ -213,7 +274,7 @@
 				<option value="Buyer">Buyer</option>
 				<option value="Seller">Seller</option>
 				<option value="Buyer_Attorney">Buyer Attorney</option>  
-				<option value="Seller_Attorney">Buyer Attorney</option>  
+				<option value="Seller_Attorney">Seller Attorney</option>  
 			    </select>
 
 			    <select name="transactionSelect" id="create_transaction_type" class="form-control" type="text" placeholder="Enter Initiator type">
@@ -233,7 +294,7 @@
 			    <input id="createCommonStreetAddress" class="form-control" type="text" placeholder="Parcel Street Address" value="15509 LE CLAIRE AVE">
 			    <input id="createParcelIndexNumber" class="form-control" type="text" placeholder="Enter parcel index number..." value="281640104600000">
 			    <input id="confirmPIN" class="form-control" type="text" placeholder="Confirm parcel index number..." value="281640104600000">
-			    <input id="merkle_root"  class="form-control" type="text" placeholder="Enter parcel Merkle_root..." value="0976cb2d1309dcc25fd8ca4bac341de6d69e4e7d11d89a8935466d7d9cd4f7d01dea678dd0c62bb20af8ff42b07958ac14a2e083c6d5732e678c9f1ff7d191ac">
+			    <input id="merkle_root"  class="form-control" type="text" placeholder="Enter parcel Merkle_root..." value=" 76c151f3cdef697ff633c42d0197cc5c4eb28f472b0e7bbece8901eb034626a9206e3afbbcf22ac0843955e1b9653eed2fe08246d5f5ae4cd04b7a67e115bcef">
 			    <input id="createMLSID"  class="form-control" type="text" placeholder="Confirm MLSID...">  
 
 		    </select>    
@@ -287,9 +348,8 @@
 			 -->
 		     </div>
 		     <div class="Escrow Phase" id="lockout"  >
-			    
-			    
-			    
+			 
+			 
 			    
 			    <div class="form-group">
 				<h1>Review and Approve the Final Public Record</h1>
@@ -302,15 +362,20 @@
 				<input id="createCancel" type="button" value="Approve Public Record" class="btn btn-secondary">
 
 				<input id="createSubmit" type="button" value="Notify Escrow Agent of Error" class="btn btn-primary"> OR 			<input id="createSubmit" type="button" value="Delegate to Attorney" class="btn btn-danger">
+			<BR><BR>	<input id="print" type="button" value="Print Below Confirmation" class="btn btn-primary" onClick="window.print()">
 				
 				<BR>
-				<div class="container" id="section-to-print">
-				    <div class="row">
-					<div class="col-md-8">
+				<BR>
+				<h1> Deed  </h1>
+				<div class="container bs-example" >
+				    <div class="row" id="section-to-print">
+					<div class=" col-md-8 col-sm-6">
+					    
 					    
 
-					    <BR><BR>
+					    
 					    COOK COUNTY ILLINOIS USA
+					    
 					    <BR><BR>
 					    02-11-2018 :: 14:22:08
 					    <BR><BR>
@@ -322,9 +387,9 @@
 					    <BR><BR>
 					    SELLER NAME: Miriam T. and Michael R. Smith
 					    <BR><BR>
-					    COMMON ADDRESS: 342 Ames Street, Chicago Illinois
+					    COMMON ADDRESS: 15509 LE CLAIRE AVE Ames Street, Chicago Illinois
 					    <BR><BR>
-					    PIN of PROPERTY: 12-41-025-014-0000
+					    PIN of PROPERTY: 28-16-6401-46-00000
 					    <BR><BR>
 					    HASH OF LEGAL DESCRIPTION: 1d345jle6sera453lkj3xxes46432d
 					    <BR><BR>
@@ -351,11 +416,11 @@
 					    LIEN: 1fdf8d5dddghhh8rgh88d6
 					    <BR><BR>
 					    HASH OF THIS TX DATA: 1dk3345kjli3453idf0d
-					   	    
+					    
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-4 col-sm-5">
 
-					    <img src="qrcode.gif">
+					    <img  src="qrcode.gif">
 					    <BR><BR>
 					    <BR><BR>
 					    <BR><BR>
@@ -365,19 +430,14 @@
 					    <BR><BR>
 					    <BR><BR>
 					    <BR><BR>
-					    <BR><BR><BR><BR>
+					    
 					    <BR><BR>
 					    
 
-					    <div style="border: 5px solid black;">
-						<BR><BR>
-						<BR><BR>
-					
-
-						<div class="center-block">NOTARIZE HERE</div>
-						<BR><BR>
-						<BR><BR>
-					
+					    <div id="padding"   style="border: 5px solid black;">
+						
+						<div  class="text-center center-block">Affix Notary Seal Here</div>
+						
 					    </div>
 					</div>
 				    </div>
