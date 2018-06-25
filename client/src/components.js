@@ -17,7 +17,7 @@ const addOption = (parent, value, selected = false) => {
 
 // Add a new table row with any number of cells
 const addRow = (parent, ...cells) => {
-  const tds = cells.map(cell => `<td>${cell}</td>`).join('')
+  const tds = cells.map(cell => `<td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">${cell}</td>`).join('')
   $(parent).append(`<tr>${tds}</tr>`)
 }
 
