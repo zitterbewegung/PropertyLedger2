@@ -123,7 +123,11 @@
 		 .text-center {
 		     text-align:center
 		 }
-	     }
+	 }
+	 th {
+	 word-wrap: break-word;
+	 max-width: 200px;
+	 }
 	</style>
 	<script>
 	 //From http://hypernephelist.com/2016/06/21/a-simple-smart-contract-ui-web3.html
@@ -206,10 +210,10 @@
 				 obj[paramName].push(paramValue);
 			     }
 			 // if array index number specified...
-				else {
-				    // put the value at that index number
-				    obj[paramName][paramNum] = paramValue;
-				}
+					else {
+					    // put the value at that index number
+					    obj[paramName][paramNum] = paramValue;
+					}
 
 		     }
 		     // if param name doesn't exist yet, set it
@@ -230,7 +234,19 @@
 		 document.getElementById("warning_text").style.display="block";
 	     }
 
-	 }
+         }
+
+ 	 $( document ).ready(function(){
+	     $("#a1").click(function(){
+		 $(".nav-tabs a[href='#sectionB']").tab("show")
+	     });
+
+
+	     $("#continueToC").click(function(){
+		 $(".nav-tabs a[href='#sectionC']").tab("show")
+	     });
+
+	 });
 	</script>
 
 
@@ -262,7 +278,7 @@
 			</div>
 			
 			<h1>Team Phase:</h1>
-			<div class="form-group">
+			<div class=" form-group">
 			    <label>STEP ONE: Identify Initiator</label>
 			    <input id="createName" class="form-control" type="text" placeholder="Enter asset name..." value="Joshua J Herman">
 			    <input id="createAddress" class="form-control" type="text" placeholder="Enter asset contact email..." value="jherman@example.com">
@@ -282,7 +298,8 @@
 				<option value="Commercial">Commercial</option>
 				<option value="Seller">Seller</option>
 
-			    </select>    
+			    </select>
+			    <button class="btn btnprimary" id="a1" aria-expanded="true">Continue</a>
 			</div>
 		    </div>
 		
@@ -300,7 +317,7 @@
 		    </select>    
 		    <input id="createCancel" type="button" value="Cancel" class="btn btn-secondary">
 
-		    <input id="createSubmit" type="button" value="Create" class="btn btn-primary">
+		    <input id="createSubmit" type="button" value="Create & Continue" id="continueToC" class="btn btn-primary">
 			</div>
 			<div class="col-md-8">
 		    	    <img src="Capture.png">
@@ -321,6 +338,7 @@
 				    <input id="createCancel" type="button" value="Cancel" class="btn btn-secondary">
 
 				    <input id="sendEmail" type="button" value="Invite" class="btn btn-primary" onClick=sendMail()>
+				    <input id="continueToD" type="button" value="Continue" class="btn btn-primary" >
 				</div>
 			    </div>
 			</div>

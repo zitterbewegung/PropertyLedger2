@@ -53,7 +53,7 @@ app.refresh = function () {
 	       asset.code,
 	       asset.mobilephone,
 	      
-	       /*asset.initiatorType,
+	       asset.initiatorType,
 	       asset.parcel_index_number,
 	       asset.merkle_root,
 	       asset.mls_id_number,
@@ -64,7 +64,7 @@ app.refresh = function () {
 	       asset.buyer_attorney,
 	       asset.sales_contract_hash,
 	       asset.approved_by_all_parties,
-	       asset.escrow_pin */)
+	       asset.escrow_pin )
       if (this.user && asset.owner === this.user.public) {
         addOption('[name="assetSelect"]', asset.name)
       }
