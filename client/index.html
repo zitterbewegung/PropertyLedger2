@@ -292,14 +292,14 @@
 			<h1>Team Phase:</h1>
 			<div class=" form-group">
 			    <label>STEP ONE: Identify Initiator</label>
-			    <input id="createName" class="form-control" type="text" placeholder="Enter asset name..." value="Joshua J Herman">
+			    <input id="createName" class="form-control" type="text" placeholder="Enter asset name..." value="Michael R. Smith">
 			    <input id="createAddress" class="form-control" type="text" placeholder="Enter asset contact email..." value="jherman@example.com">
 			    <input id="createmobilephone"  class="form-control" type="text" placeholder="Enter asset phone number..." value="3316255728">
 			    <input id="createCode"  class="form-control" type="text" placeholder="Enter PIN..." value="9999">
 			    <input id="createMobilePhone" class="form-control" type="text" placeholder="Enter initiator phone" value="7732766688">
 			    <select name="initiator_type" id="create_initiator_type" class="form-control" type="text" placeholder="Enter Initiator type">
-				<option selected="selected" value="Realitor">Realitor</option>
-				<option value="Buyer">Buyer</option>
+				<option value="Realitor">Realitor</option>
+				<option selected="selected" value="Buyer">Buyer</option>
 				<option value="Seller">Seller</option>
 				<option value="Buyer_Attorney">Buyer Attorney</option>  
 				<option value="Seller_Attorney">Seller Attorney</option>  
@@ -327,7 +327,7 @@
 			    <input id="createMLSID"  class="form-control" type="text" placeholder="Confirm MLSID...">  
 
 			    </select>    
-			    <input id="createCancel" type="button" value="Cancel" class="btn btn-secondary">
+			    <input id="createCancel" type="button" value="Cancel" class="btn btn-danger">
 
 			    <input id="createSubmit" type="button" value="Create" class="btn btn-primary">
 			</div>
@@ -347,7 +347,7 @@
 				    <input id="createParcelIndexNumber" class="form-control" type="text" placeholder="Enter parcel index number..." value="28164010460000">
 				    <input id="merkle_root"  class="form-control" type="text" placeholder="Enter parcel Merkle_root..." value="0976cb2d1309dcc25fd8ca4bac341de6d69e4e7d11d89a8935466d7d9cd4f7d01dea678dd0c62bb20af8ff42b07958ac14a2e083c6d5732e678c9f1ff7d191ac">
 
-				    <input id="createCancel" type="button" value="Cancel" class="btn btn-secondary">
+				    <input id="createCancel" type="button" value="Cancel" class="btn btn-danger">
 
 				    <input id="sendEmail" type="button" value="Invite" class="btn btn-primary" onClick=sendMail()>
 				    <input id="continueToD" type="button" value="Continue" class="btn btn-primary" >
@@ -391,15 +391,17 @@
 				<input id="createSubmit" type="button" value="Generate Email code." class="btn btn-primary">
 				<input id="merkle_root"  class="form-control" type="text" placeholder="Enter code here...">
 
-				<input id="createCancel" type="button" value="Approve Public Record" class="btn btn-secondary">
+				<input id="createCancel" type="button" value="Approve Public Record" class="btn btn-success">
 
 				<input id="createSubmit" type="button" value="Notify Escrow Agent of Error" class="btn btn-primary"> OR 			<input id="createSubmit" type="button" value="Delegate to Attorney" class="btn btn-danger">
 			<BR><BR>	<input id="print" type="button" value="Print Below Confirmation" class="btn btn-primary" onClick="window.print()">
 				
 				<BR>
 				<BR>
-				<h1> Deed  </h1>
-				<div class="container bs-example" >
+				<div class="panel panel-default">
+				    <div class="panel-heading"><h1 class="panel-title">Deed</h1></div>
+				    <div class="panel-body">
+					<div class="container bs-example" >
 				    <div class="row" id="section-to-print">
 					<div class=" col-md-8 col-sm-6">
 					    COOK COUNTY ILLINOIS USA
@@ -446,7 +448,7 @@
 					    HASH OF THIS TX DATA: 1dk3345kjli3453idf0d
 					    
 					</div>
-					<div class="col-md-4 col-sm-5">
+					<div class="col-md-3 col-sm-4">
 
 					    <img  src="qrcode.gif">
 					    <BR><BR>
@@ -474,6 +476,9 @@
 			    </div>
 
 			</div>
+
+				    </div>
+				</div>
 			<div id="test" class="form-group">
 			    <label>Deploy data to Ethereum </label>
 			    <input id="WriteToBlockchain" value="Deploy" class="btn btn-primary" onClick="deployContract()">
