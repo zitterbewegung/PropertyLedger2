@@ -65,7 +65,7 @@ class TunachainState(object):
                 #Step one
                 "name": name,
                 "owner": owner,
-                "email": "jherman@aconsapart.com",
+                "email": "jherman@example.com",
                 "code": "9999",
                 "mobilephone": "3316255728",
                 "userType": "Realitor",
@@ -76,11 +76,11 @@ class TunachainState(object):
                 "merkle_root" : "0976cb2d1309dcc25fd8ca4bac341de6d69e4e7d11d89a8935466d7d9cd4f7d01dea678dd0c62bb20af8ff42b07958ac14a2e083c6d5732e678c9f1ff7d191ac",
                 "mls_id_number": "1256absd",
                 #Step three Send invites Team phase
-                "buyer_email": "buyer@aconsapart.com",
-                "seller_email": "seller@aconsapart.com",
+                "buyer_email": "jjohnson@example.com",
+                "seller_email": "miriamt@example.com",
                 "buyer_attorney": "buyer_attorney@compliance.com",
                 "seller_attorney": "seller_attorney@compliance.com",
-                "sales_contract_hash" : "10c435b41257e5ae2ef4ae1c360b3d02a14d5175ab375a9514989e1f097cff16d1f41f367170505aa54a41c0d7a8f343441b9c0500703d4c54ac36a577eaeacf",
+                "sales_contract_hash" : "1dfi3453l898s9dgfsss989",
                 "escrow_pin":"9999",
                 "approved_by_all_parties" : True
             })
