@@ -398,7 +398,7 @@
 				<input id="createCancel" type="button" value="Approve Public Record" class="btn btn-success">
 
 				<input id="createSubmit" type="button" value="Notify Escrow Agent of Error" class="btn btn-primary"> OR 			<input id="createSubmit" type="button" value="Delegate to Attorney" class="btn btn-danger">
-			<BR><BR>	<input id="print" type="button" value="Print Below Confirmation" class="btn btn-primary" onClick="window.print()">
+			<BR><BR>	<!--input id="print" type="button" value="Print Below Confirmation" class="btn btn-primary" onClick="window.print()"-->
 				
 				<BR>
 				<BR>
@@ -407,99 +407,19 @@
 				    <div class="panel-body">
 					<div class="container bs-example" >
 				    <div class="row" id="section-to-print">
-					<div class=" col-md-8 col-sm-6">
-					    COOK COUNTY ILLINOIS USA
+					<div class=" col-md-12 col-sm-12">
+					    <object data="ConfDeed.pdf" type="application/pdf" width="900px" height="1000px">
+<iframe src="/ConfDeed.pdf" style="border: none;" width="900px" height="1000px">
+This browser does not support PDFs. Please download the PDF to view it: <a href="/ConfDeed.pdf">Download PDF</a>
+</iframe>
+</object>
 
-					    <BR><BR>
-					    02-11-2018 :: 14:22:08
-					    <BR><BR>
-					    TX NUMBER: 2018000000001
-					    <BR><BR>
-					    INSTRUMENT TYPE: Warranty Deed
-					    <BR><BR>
-					    BUYER NAME: Joshua X. Johnson
-					    <BR><BR>
-					    SELLER NAME: Miriam T. and Michael R. Smith
-					    <BR><BR>
-					    COMMON ADDRESS: 15509 LE CLAIRE AVE Ames Street, Chicago Illinois
-					    <BR><BR>
-					    PIN of PROPERTY: 28-16-6401-46-00000
-					    <BR><BR>
-					    HASH OF LEGAL DESCRIPTION: 1d345jle6sera453lkj3xxes46432d
-					    <BR><BR>
-					    1st PRIOR DOCUMENT NUMBER: 201335554032
-					    <BR><BR>
-					    SIGNED BY BUYER: Yes
-					    <BR><BR>
-					    SIGNED BY SELLER: Yes
-					    <BR><BR>
-					    NOTARY SIGNATURE: 1343ksd88ds070980se876s99
-					    <BR><BR>
-					    MUNICIPAL TAX PAID: 100.00
-					    <BR><BR>
-					    COUNTY TAX PAID: 500.00
-					    <BR><BR>
-					    STATE TAX PAID: 1000.00
-					    <BR><BR>
-					    HASH OF SALES CONTRACT: 1dfi3453l898s9dgfsss989
-					    <BR><BR>
-					    HASH OF MORTGAGE
-					    <BR><BR>
-					    -
-					    <BR><BR>
-					    LIEN: 1fdf8d5dddghhh8rgh88d6
-					    <BR><BR>
-					    HASH OF THIS TX DATA: 1dk3345kjli3453idf0d
-					    <BR> <BR>
-					     <BR><BR>
-					    
-					    <BR>
-					    
-					    I, NAME, a duly authorized Notary public in the State
-					    of Illinois, witnessed the above conveyance, 
-					    confirmed the identities of all parties and
-					    that the transaction was voluntary and without coercion.
-					   
-					</div>
-					<div class="col-md-3 col-sm-4">
-					  <h3> Recorder of Deed </h3>
-					   
-					  <img  src="qrcode.gif">
-					  <BR><BR>
-					    This document prepared by:
-					    Antonym.io
-					    222 W. Merchandise Mart Plaza, suite 1230 Chicago, IL 60654
-					    More details of this conveyance can be found by scanning the QR Code.
-					    <BR>
-					    <BR><BR>
-					    <BR><BR>
-					    <BR><BR>
-					    <BR><BR>
-					    <BR><BR>
-					    <BR><BR>
-					    <BR><BR>
-					    <BR><BR>
-					    
-					    <BR><BR> <BR><BR>
-					    
-					    <BR><BR>
-					    
-
-					    <div id="padding"   style="border: 5px solid black;">
-						
-						<div  class="text-center center-block">Affix Notary Seal Here</div>
-						
-					    </div>
 					</div>
 				    </div>
 				
 				
-			    </div>
+				    
 
-			</div>
-
-				    </div>
-				</div>
 			<div id="test" class="form-group">
 			    <label>Deploy data to Ethereum </label>
 			    <input id="WriteToBlockchain" value="Deploy" class="btn btn-primary" onClick="deployContract()">
@@ -507,10 +427,10 @@
 			</div>
 			
 			
-			<div class="form-group">
+			<!--div class="form-group">
 			    <label>Accept Document</label>
 			    <div id="transferList"></div>
-			</div>
+			</div-->
 		</div>
 	    </div>
 		</div>
