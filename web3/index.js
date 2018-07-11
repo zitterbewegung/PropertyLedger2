@@ -12,7 +12,21 @@ let Web3 = require('web3'); // https://www.npmjs.com/package/web3
 // http://localhost:8545
 // For geth VPS server + SSH tunneling see
 // https://gist.github.com/miohtama/ce612b35415e74268ff243af645048f4
-let web3 = new Web3(new Web3.providers.HttpProvider("http://168.62.166.36:8545"));
+const HDWalletProvider = require('truffle-hdwallet-provider');
+
+const walletMnemonic = 'sausage food butter ask staff such primary plate light quick drill proof'; // Your mnemonic
+const walletAPIUrl = 'rD8Lg0NVjOOkYDcvVi0r'; // Your Infura URL
+
+const provider = new HDWalletProvider(
+    walletMnemonic,
+    walletAPIUrl
+);
+
+const web3 = new Web3(provider);
+
+
+
+//let web3 = new Web3(new Web3.providers.HttpProvider("http://168.62.166.36:8545"));
 
 //web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'));
 
@@ -53,8 +67,8 @@ async function waitBlock() {
 //waitBlock();
 //Load HTTP module
 const http = require("http");
-const hostname = '127.0.0.1';
-const port = 3000;
+const hostname = 'propdemo.eastus.cloudapp.azure.com';
+const port = 3001;
 
 //Create HTTP server and listen on port 3000 for requests
 const server = http.createServer((req, res) => {
@@ -62,7 +76,7 @@ const server = http.createServer((req, res) => {
   //Set the response HTTP header with HTTP status and Content type
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
-      	     var web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545"));
+      	     //var web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545"));
 	     var escrowledgerContract = web3.eth.contract([{"constant":true,"inputs":[],"name":"countLedgerEntrys","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"LedgerEntryAccts","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_address","type":"address"}],"name":"getLedgerEntry","outputs":[{"name":"","type":"uint256"},{"name":"","type":"string"},{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_address","type":"address"},{"name":"_money","type":"uint256"},{"name":"_ledgerUser","type":"string"},{"name":"_escrowName","type":"string"}],"name":"setLedgerEntry","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getLedgerEntrys","outputs":[{"name":"","type":"address[]"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]);
 console.log("Here")
 var escrowledger = escrowledgerContract.new(
