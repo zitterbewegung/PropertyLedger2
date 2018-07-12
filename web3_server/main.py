@@ -14,8 +14,8 @@ app = Flask(__name__)
 def make_contract():
     
     # open a connection to the local ethereum node
-    http_provider = HTTPProvider('http://localhost:8545')
-    eth_provider = Web3(http_provider).eth
+    #http_provider = HTTPProvider('http://localhost:8545')
+    #eth_provider = Web3(http_provider).eth
     #https://ethereum.stackexchange.com/questions/44614/how-to-connect-to-infura-and-deploy-contract-use-web3-py
     # we'll use one of our default accounts to deploy from. every write to the chain requires a
     # payment of ethereum called "gas". if we were running an actual test ethereum node locally,
@@ -65,7 +65,7 @@ def make_contract():
     signed = acct.signTransaction(construct_txn)
 
     result = w3.eth.sendRawTransaction(signed.rawTransaction)
-    import pdb; pdb.set_trace()
+    #import pdb; pdb.set_trace()
 
     #tx_receipt = w3.eth.getTransactionReceipt(result)
     # # create a contract factory. the contract factory contains the information about the
@@ -106,7 +106,7 @@ def make_contract():
     #     ContractFactoryClass=ConciseContract,
     # )
     # #pi_in_decimal = contract_instance.percent(22,7,10)
-    return "Contract deployed" 
+    return "Contract deployed at address" + result.hex()
 if __name__ == '__main__':
     # set debug=True for easy development and experimentation
     # set use_reloader=False. when this is set to True it initializes the flask app twice. usually

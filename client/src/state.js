@@ -59,7 +59,8 @@ const getState = cb => {
   $.get(`${API_URL}/state?address=${PREFIX}`, ({ data }) => {
     cb(data.reduce((processed, datum) => {
       if (datum.data !== '') {
-        const parsed = JSON.parse(atob(datum.data))
+         const parsed = JSON.parse(atob(datum.data))
+	  debugger; 
         if (datum.address[7] === '0') processed.assets.push(parsed)
         if (datum.address[7] === '1') processed.transfers.push(parsed)
       }

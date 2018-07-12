@@ -110,8 +110,8 @@ $('[name="keySelect"]').on('change', function () {
 // Create Asset
 $('#createSubmit').on('click', function () {
    const asset = $('#createName').val()
-   //const asset_email = $('#create_asset_email').val() 
-  if (asset) app.update('create', asset)
+    const asset_email = "test"; //$('#create_asset_email').val() 
+  if (asset && asset_email) app.update('create', asset)
 })
 
 // Transfer Asset
