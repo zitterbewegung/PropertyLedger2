@@ -65,7 +65,7 @@ class TunachainState(object):
                 #Step one
                 "name": name,
                 "owner": owner,
-                "email": "jherman@example.com",
+                "email": email,
                 "code": "9999",
                 "mobilephone": "3316255728",
                 "userType": "Realitor",

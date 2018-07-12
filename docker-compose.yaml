@@ -53,7 +53,7 @@ services:
       - '8000:80'
     depends_on:
     - rest-api
-    - tunachain-shell
+    - tunachain-shell 
 
   tunachain-tp:
     build:
@@ -111,19 +111,10 @@ services:
         sawtooth-validator -vv \
           --endpoint tcp://validator:8800 \
           --bind component:tcp://eth0:4004 \
-          --bind network:tcp://eth0:8800
-      "
-  ganachecli:
-        image: trufflesuite/ganache-cli:latest
-        command: ["-d", "-p", "8545", "--hostname", "0.0.0.0"]
-        #command: bash -c "ganache-cli --hostname 0.0.0.0"
-        expose: 
-         - 8545
-        ports:
-         - 0.0.0.0:8545:8545
-#nginx-proxy:
-#       image: jwilder/nginx-proxy
-#       ports:
-#        - "8545:7545"
-#       volumes:
-#        - /var/run/docker.sock:/tmp/docker.sock:ro
+          --bind network:tcp://eth0:8800"
+  #web:
+  #  build: ./web3
+  #  ports:
+  #    - "5005:5000"
+  #  volumes:
+  #    - .:/web3
