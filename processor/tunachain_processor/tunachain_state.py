@@ -42,6 +42,8 @@ def _deserialize(data):
 
 
 def _serialize(data):
+    print(data)
+    print(json.dumps(data, sort_keys=True).encode('utf-8'))
     return json.dumps(data, sort_keys=True).encode('utf-8')
 
 
@@ -58,13 +60,17 @@ class TunachainState(object):
     def get_transfer(self, name):
         return self._get_state(_get_transfer_address(name))
 
-    def set_asset(self, name, owner):
+    def set_asset(self, name, email):
+        print(name)
+        
+        print(email)
         address = _get_asset_address(name)
+     
         state_data = _serialize(
             {
                 #Step one
                 "name": name,
-                "owner": owner,
+                #"owner": owner,
                 "email": email,
                 "code": "9999",
                 "mobilephone": "3316255728",

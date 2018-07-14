@@ -23,14 +23,14 @@ class TunachainPayload(object):
     def __init__(self, payload):
         try:
             data = json.loads(payload.decode('utf-8'))
-            import pdb; pdb.set_trace()
+            print(data)
         except ValueError:
             raise InvalidTransaction("Invalid payload serialization")
-        import pdb; pdb.set_trace()
         action = data.get('action')
         asset = data.get('asset')
         owner = data.get('owner')
         email = data.get('email')
+        print(email)
         if not action:
             raise InvalidTransaction('Action is required')
         if action not in ('create', 'transfer', 'accept', 'reject'):
@@ -38,7 +38,7 @@ class TunachainPayload(object):
 
         if not asset:
             raise InvalidTransaction('Asset is required')
-
+        
         if action == 'transfer':
             if not owner:
                 raise InvalidTransaction(

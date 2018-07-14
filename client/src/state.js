@@ -18,7 +18,8 @@ const secp256k1 = require('sawtooth-sdk/signing/secp256k1')
 
 // Config variables
 const KEY_NAME = 'transfer-chain.keys'
-const API_URL = 'http://propdemo.eastus.cloudapp.azure.com:8000/api'
+//const API_URL = 'http://propdemo.eastus.cloudapp.azure.com:8000/api'
+const API_URL = 'http://localhost:8000/api'
 
 const FAMILY = 'transfer-chain'
 const VERSION = '0.0'
@@ -60,7 +61,6 @@ const getState = cb => {
     cb(data.reduce((processed, datum) => {
       if (datum.data !== '') {
          const parsed = JSON.parse(atob(datum.data))
-	  debugger; 
         if (datum.address[7] === '0') processed.assets.push(parsed)
         if (datum.address[7] === '1') processed.transfers.push(parsed)
       }
@@ -78,6 +78,7 @@ const submitUpdate = (payload, privateKeyHex, cb) => {
 
   // Create the TransactionHeader
   const payloadBytes = Buffer.from(JSON.stringify(payload))
+    console.log(payload)  
   const transactionHeaderBytes = protobuf.TransactionHeader.encode({
     familyName: FAMILY,
     familyVersion: VERSION,

@@ -91,6 +91,15 @@ app.update = function (action, asset, owner) {
   }
 }
 
+app.update2 = function (action, asset, email) {
+  if (this.user) {
+    submitUpdate(
+	{ action, asset, email },
+      this.user.private,
+      success => success ? this.refresh() : null
+    )
+  }
+}
 // Select User
 $('[name="keySelect"]').on('change', function () {
   if (this.value === 'new') {
@@ -107,11 +116,14 @@ $('[name="keySelect"]').on('change', function () {
   }
 })
 
+
 // Create Asset
 $('#createSubmit').on('click', function () {
-   const asset = $('#createName').val()
-    const asset_email = "test"; //$('#create_asset_email').val() 
-  if (asset && asset_email) app.update('create', asset)
+  const asset = $('#createName').val()
+  const email = $('#createAddress').val()
+
+
+    if (asset && email) app.update2('create', asset, email)
 })
 
 // Transfer Asset
