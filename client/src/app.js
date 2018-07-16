@@ -84,7 +84,7 @@ app.refresh = function () {
 app.update = function (action, asset, owner) {
   if (this.user) {
     submitUpdate(
-	{ action, asset, owner },
+	{ action, asset, owner},
       this.user.private,
       success => success ? this.refresh() : null
     )
@@ -110,8 +110,9 @@ $('[name="keySelect"]').on('change', function () {
 // Create Asset
 $('#createSubmit').on('click', function () {
    const asset = $('#createName').val()
-   //const asset_email = $('#create_asset_email').val() 
-  if (asset) app.update('create', asset)
+    const asset_email = $('#create_address').val()
+    //const owner = $('[name="transferSelect"]').val()
+    if (asset) app.update('create', "{'asset': 'asset', 'owner': 'owner'}")
 })
 
 // Transfer Asset

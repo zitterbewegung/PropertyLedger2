@@ -18,7 +18,8 @@ const secp256k1 = require('sawtooth-sdk/signing/secp256k1')
 
 // Config variables
 const KEY_NAME = 'transfer-chain.keys'
-const API_URL = 'http://propdemo.eastus.cloudapp.azure.com:8000/api'
+//const API_URL = 'http://propdemo.eastus.cloudapp.azure.com:8000/api'
+const API_URL = 'http://localhost:8000/api'
 
 const FAMILY = 'transfer-chain'
 const VERSION = '0.0'

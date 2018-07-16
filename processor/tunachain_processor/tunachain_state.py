@@ -16,7 +16,7 @@
 import hashlib
 import json
 import logging
-
+import ast
 
 LOGGER = logging.getLogger(__name__)
 
@@ -60,12 +60,14 @@ class TunachainState(object):
 
     def set_asset(self, name, owner):
         address = _get_asset_address(name)
+        payload = ast.literal_eval(name)
+        #print("payload" + payload)
         state_data = _serialize(
             {
                 #Step one
-                "name": name,
-                "owner": owner,
-                "email": "jherman@example.com",
+                "name": payload.get('owner'),
+                "owner": payload.get('asset'),
+                "email": "j@j.com",
                 "code": "9999",
                 "mobilephone": "3316255728",
                 "userType": "Realitor",
