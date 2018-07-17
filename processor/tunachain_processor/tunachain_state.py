@@ -65,13 +65,13 @@ class TunachainState(object):
         state_data = _serialize(
             {
                 #Step one
-                "name": payload.get('owner'),
-                "owner": payload.get('asset'),
-                "email": "j@j.com",
-                "code": "9999",
-                "mobilephone": "3316255728",
-                "userType": "Realitor",
-                "initiatorType" : "Residential",
+                "name": payload.get('asset'),
+                "owner": owner,
+                "email": payload.get('email'),
+                "code":  payload.get('code'),
+                "mobilephone": payload.get('phone'),
+                "userType": payload.get('userType'),
+                "initiatorType" : payload.get('initiatorType'),
                 #Step two Initiate Phase Identify parcel
                 "parcel_street_address" : "15509 LE CLAIRE AVE",
                 "parcel_index_number" : 28164010460000,

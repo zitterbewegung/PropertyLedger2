@@ -109,10 +109,14 @@ $('[name="keySelect"]').on('change', function () {
 
 // Create Asset
 $('#createSubmit').on('click', function () {
-   const asset = $('#createName').val()
-    const asset_email = $('#create_address').val()
-    //const owner = $('[name="transferSelect"]').val()
-    if (asset) app.update('create', "{'asset': 'asset', 'owner': 'owner'}")
+    const asset = $('#createName').val()
+    const asset_email = $('#createAddress').val()
+    const phone = $('#createmobilephone').val()
+    const code = $('#createCode').val()
+    const initiator = $('[name="initiator_type"]').val()
+    const transaction_type = $('[name="transactionSelect"]').val()
+    const owner = $('[name="transferSelect"]').val()
+    if (asset && asset_email && phone && code) app.update('create', "{'asset': '"+asset +"','phone': '"+ phone+"','email':'"+ asset_email +"','code':'" + code +"','userType':'" + initiator + "','initiatorType':'" + transaction_type + "'}",owner)
 })
 
 // Transfer Asset
