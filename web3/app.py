@@ -63,11 +63,13 @@ def make_contract():
     'gasPrice': w3.toWei('21', 'gwei')})
 
     signed = acct.signTransaction(construct_txn)
-
+    try:
+        result = w3.eth.sendRawTransaction(signed.rawTransaction)
+    except:
+        return "Please wait for the previous transaction to finish"
     result = w3.eth.sendRawTransaction(signed.rawTransaction)
     
     #tx_receipt = w3.eth.getTransactionReceipt(result)
-    # # create a contract factory. the contract factory contains the information about the
     # # contract that we probably will not change later in the deployment script.
     # contract_factory = eth_provider.contract(
     #     abi=contract_abi,
