@@ -111,4 +111,4 @@ if __name__ == '__main__':
     # set use_reloader=False. when this is set to True it initializes the flask app twice. usually
     # this isn't a problem, but since we deploy our contract during initialization it ends up getting
     # deployed twice. when use_reloader is set to False it deploys only once but reloading is disabled
-    app.run(debug=True, host='0.0.0.0', port=80, use_reloader=False)
+    app.run(debug=True, host='0.0.0.0', port=4444, use_reloader=False)
