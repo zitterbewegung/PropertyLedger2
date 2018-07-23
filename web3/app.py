@@ -67,7 +67,6 @@ def make_contract():
         result = w3.eth.sendRawTransaction(signed.rawTransaction)
     except:
         return "Please wait for the previous transaction to finish"
-    result = w3.eth.sendRawTransaction(signed.rawTransaction)
     
     #tx_receipt = w3.eth.getTransactionReceipt(result)
     # # contract that we probably will not change later in the deployment script.
